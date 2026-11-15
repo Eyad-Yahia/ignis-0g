@@ -4,12 +4,12 @@
 
 @layer base {
   body {
-    @apply bg-[#09090B] text-zinc-100 antialiased;
+    @apply bg-[#09090B] text-zinc-100 font-sans antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum";
   }
 }
 
-/* SpaceX / Linear telemetry monospace tabular figures */
+/* Telemetry monospace tabular figures strictly for data */
 .font-telemetry {
   font-family: "JetBrains Mono", Menlo, Consolas, monospace;
   font-variant-numeric: tabular-nums;
@@ -34,13 +34,18 @@
   background: #3F3F46;
 }
 
-/* Crisp hairline borders */
+/* Clean hairline borders */
 .border-hairline {
-  border: 1px solid #27272A;
+  border: 1px solid rgba(39, 39, 42, 0.7);
 }
 
-/* Subtle aerospace panel styling */
+/* Refined bespoke panel styling */
 .panel-obsidian {
-  background-color: #111114;
-  border: 1px solid #27272A;
+  background-color: #0E0E12;
+  border: 1px solid rgba(39, 39, 42, 0.6);
+}
+
+.panel-subtle {
+  background-color: #0C0C0E;
+  border: 1px solid rgba(39, 39, 42, 0.4);
 }

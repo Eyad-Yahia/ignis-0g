@@ -140,34 +140,34 @@ export const Header: React.FC<HeaderProps> = ({
   const getProviderPill = () => {
     if (aiConfig.provider === 'offline' || !aiConfig.provider) {
       return {
-        label: 'AI: OFFLINE TF-IDF',
+        label: 'Offline TF-IDF',
         dot: 'bg-zinc-500',
-        border: 'border-[#27272A]'
+        border: 'border-zinc-800'
       };
     }
     if (aiConfig.provider === 'gemini') {
       return {
-        label: 'GEMINI: CONNECTED',
+        label: 'Gemini 2.0',
         dot: 'bg-emerald-400',
         border: 'border-[#3B82F6]/40 text-[#3B82F6]'
       };
     }
     if (aiConfig.provider === 'openai') {
       return {
-        label: 'OPENAI: CONNECTED',
+        label: 'OpenAI',
         dot: 'bg-emerald-400',
         border: 'border-emerald-500/40 text-emerald-400'
       };
     }
     if (aiConfig.provider === 'anthropic') {
       return {
-        label: 'CLAUDE: CONNECTED',
+        label: 'Claude 3.5',
         dot: 'bg-emerald-400',
         border: 'border-amber-500/40 text-amber-400'
       };
     }
     return {
-      label: 'CUSTOM AI: CONNECTED',
+      label: 'Custom AI',
       dot: 'bg-emerald-400',
       border: 'border-[#F97316]/40 text-[#F97316]'
     };
@@ -178,34 +178,34 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <>
       {/* 48px Header Bar — strict z-30 in hierarchy */}
-      <header className="sticky top-0 z-30 h-12 bg-[#09090B] border-b border-[#27272A] px-3 sm:px-4 flex items-center justify-between select-none">
+      <header className="sticky top-0 z-30 h-12 bg-[#09090B]/95 backdrop-blur-md border-b border-zinc-800/70 px-4 sm:px-6 flex items-center justify-between select-none">
         {/* Left: Branding & Dataset Status */}
-        <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+        <div className="flex items-center gap-3 min-w-0">
           <div className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-6 h-6 rounded bg-[#18181B] border border-[#27272A] flex items-center justify-center text-[#F97316]">
+            <div className="w-6 h-6 rounded-md bg-[#18181B] border border-zinc-800 flex items-center justify-center text-[#F97316]">
               <Flame className="w-3.5 h-3.5" />
             </div>
-            <span className="font-mono font-bold text-sm tracking-wider text-zinc-100">
+            <span className="font-sans font-semibold text-sm tracking-tight text-zinc-100">
               IGNIS-0G
             </span>
           </div>
 
-          <span className="text-[#27272A] hidden sm:inline">|</span>
+          <span className="text-zinc-700 hidden sm:inline">|</span>
 
-          <div className="hidden sm:flex items-center gap-2 font-mono text-[11px] text-zinc-400 truncate">
+          <div className="hidden sm:flex items-center gap-2 font-sans text-xs text-zinc-400 truncate">
             <span className="flex items-center gap-1.5 text-zinc-300">
               <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
-              17 NASA PSI RECORDS
+              <span className="font-mono tabular-nums font-medium text-zinc-200">17</span> NASA PSI records
             </span>
             <span className="text-zinc-600 hidden md:inline">•</span>
-            <span className="text-zinc-500 text-[10px] hidden md:inline">
-              NASA-STD-6001B METHODOLOGY
+            <span className="text-zinc-400 text-xs hidden md:inline">
+              NASA-STD-6001B methodology
             </span>
           </div>
         </div>
 
         {/* Center: Segmented Navigation Tabs */}
-        <nav className="flex items-center bg-[#111114] border border-[#27272A] rounded p-0.5">
+        <nav className="flex items-center bg-[#101014] border border-zinc-800/70 rounded-lg p-0.5">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -213,9 +213,9 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded text-xs font-medium transition-all duration-150 ${
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-sans font-medium transition-all duration-150 ${
                   isActive
-                    ? 'bg-[#1C1C21] text-zinc-100 shadow-sm border border-[#3F3F46]'
+                    ? 'bg-[#1C1C21] text-zinc-100 shadow-sm border border-zinc-700/60'
                     : 'text-zinc-400 hover:text-zinc-200 hover:bg-[#18181B]'
                 }`}
                 title={item.label}
@@ -231,11 +231,11 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center gap-2 flex-shrink-0">
           <button
             onClick={onOpenAiModal}
-            className={`flex items-center gap-1.5 px-2.5 py-1 rounded border bg-[#111114] text-zinc-300 text-[11px] font-mono transition-colors hover:border-[#3F3F46] ${pill.border}`}
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md border bg-[#101014] text-zinc-300 text-xs font-sans font-medium transition-colors hover:border-zinc-700 ${pill.border}`}
             title="Configure AI Provider (Gemini, OpenAI, Claude, Groq/Ollama, or Offline TF-IDF)"
           >
             <Bot className="w-3.5 h-3.5 text-[#F97316]" />
-            <span className="hidden sm:inline font-medium">{pill.label}</span>
+            <span className="hidden sm:inline">{pill.label}</span>
             <span className={`w-1.5 h-1.5 rounded-full ${pill.dot}`} />
           </button>
         </div>
@@ -249,56 +249,56 @@ export const Header: React.FC<HeaderProps> = ({
             if (e.target === e.currentTarget) setIsAiModalOpen(false);
           }}
         >
-          <div className="w-full max-w-xl bg-[#111114] border border-[#27272A] rounded-lg shadow-2xl p-4 sm:p-6 space-y-4 max-h-[92vh] overflow-y-auto">
+          <div className="w-full max-w-xl bg-[#101014] border border-zinc-800/80 rounded-xl shadow-2xl p-5 sm:p-6 space-y-5 max-h-[92vh] overflow-y-auto">
             {/* Header */}
-            <div className="flex items-center justify-between pb-3 border-b border-[#27272A]">
-              <div className="flex items-center gap-2">
-                <div className="p-1.5 rounded bg-[#1C1C21] text-[#F97316]">
+            <div className="flex items-center justify-between pb-3 border-b border-zinc-800/70">
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 rounded-lg bg-[#18181B] text-[#F97316] border border-zinc-800">
                   <Cpu className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold text-zinc-100 font-mono">
-                    Universal AI Flight Synthesizer Config
+                  <h3 className="text-sm font-semibold text-zinc-100 font-sans tracking-tight">
+                    AI Flight Synthesizer Configuration
                   </h3>
-                  <p className="text-[11px] text-zinc-400 font-sans">
-                    Select any AI provider or use the offline deterministic engine.
+                  <p className="text-xs text-zinc-400 font-sans">
+                    Select an external AI model or run with the offline deterministic engine.
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setIsAiModalOpen(false)}
-                className="text-zinc-400 hover:text-zinc-200 p-1 rounded hover:bg-[#1C1C21]"
+                className="text-zinc-400 hover:text-zinc-200 p-1.5 rounded-lg hover:bg-[#18181B] transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
             {/* Provider Selector Cards (5 Providers) */}
-            <div className="space-y-1.5">
-              <label className="block text-[11px] font-mono text-zinc-400">
-                SELECT AI ENGINE PROVIDER:
+            <div className="space-y-2">
+              <label className="block text-xs font-sans font-medium text-zinc-400">
+                Select AI Engine Provider
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {/* 1. Offline TF-IDF */}
                 <button
                   type="button"
                   onClick={() => handleProviderSelect('offline')}
-                  className={`p-2.5 rounded text-left border transition-all ${
+                  className={`p-3 rounded-lg text-left border transition-all ${
                     selectedProvider === 'offline'
-                      ? 'bg-[#1C1C21] border-[#F97316] text-zinc-100'
-                      : 'bg-[#09090B] border-[#27272A] text-zinc-400 hover:border-zinc-600'
+                      ? 'bg-[#18181B] border-[#F97316] text-zinc-100'
+                      : 'bg-[#0C0C0E] border-zinc-800 text-zinc-400 hover:border-zinc-700'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="font-mono text-xs font-semibold text-zinc-200 flex items-center gap-1.5">
+                    <span className="font-sans text-xs font-medium text-zinc-200 flex items-center gap-1.5">
                       <Cpu className="w-3.5 h-3.5 text-[#F97316]" />
                       Offline TF-IDF Analyst
                     </span>
-                    <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                    <span className="text-[10px] font-sans px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                       Zero Key
                     </span>
                   </div>
-                  <p className="text-[10px] text-zinc-400 leading-snug font-sans">
+                  <p className="text-xs text-zinc-400 leading-snug font-sans">
                     Deterministic local semantic engine over 17 NASA flight records. Always available offline.
                   </p>
                 </button>
@@ -307,22 +307,22 @@ export const Header: React.FC<HeaderProps> = ({
                 <button
                   type="button"
                   onClick={() => handleProviderSelect('gemini')}
-                  className={`p-2.5 rounded text-left border transition-all ${
+                  className={`p-3 rounded-lg text-left border transition-all ${
                     selectedProvider === 'gemini'
-                      ? 'bg-[#1C1C21] border-[#3B82F6] text-zinc-100'
-                      : 'bg-[#09090B] border-[#27272A] text-zinc-400 hover:border-zinc-600'
+                      ? 'bg-[#18181B] border-[#3B82F6] text-zinc-100'
+                      : 'bg-[#0C0C0E] border-zinc-800 text-zinc-400 hover:border-zinc-700'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="font-mono text-xs font-semibold text-zinc-200 flex items-center gap-1.5">
+                    <span className="font-sans text-xs font-medium text-zinc-200 flex items-center gap-1.5">
                       <Sparkles className="w-3.5 h-3.5 text-[#3B82F6]" />
                       Google Gemini
                     </span>
-                    <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-blue-500/10 text-blue-400 border border-blue-500/30">
+                    <span className="text-[10px] font-sans px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">
                       Fast 2.0
                     </span>
                   </div>
-                  <p className="text-[10px] text-zinc-400 leading-snug font-sans">
+                  <p className="text-xs text-zinc-400 leading-snug font-sans">
                     Fast multimodal reasoning with gemini-2.0-flash or custom model.
                   </p>
                 </button>
@@ -331,22 +331,22 @@ export const Header: React.FC<HeaderProps> = ({
                 <button
                   type="button"
                   onClick={() => handleProviderSelect('openai')}
-                  className={`p-2.5 rounded text-left border transition-all ${
+                  className={`p-3 rounded-lg text-left border transition-all ${
                     selectedProvider === 'openai'
-                      ? 'bg-[#1C1C21] border-emerald-500 text-zinc-100'
-                      : 'bg-[#09090B] border-[#27272A] text-zinc-400 hover:border-zinc-600'
+                      ? 'bg-[#18181B] border-emerald-500 text-zinc-100'
+                      : 'bg-[#0C0C0E] border-zinc-800 text-zinc-400 hover:border-zinc-700'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="font-mono text-xs font-semibold text-zinc-200 flex items-center gap-1.5">
+                    <span className="font-sans text-xs font-medium text-zinc-200 flex items-center gap-1.5">
                       <Zap className="w-3.5 h-3.5 text-emerald-400" />
                       OpenAI
                     </span>
-                    <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                    <span className="text-[10px] font-sans px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                       gpt-4o-mini
                     </span>
                   </div>
-                  <p className="text-[10px] text-zinc-400 leading-snug font-sans">
+                  <p className="text-xs text-zinc-400 leading-snug font-sans">
                     Direct OpenAI API integration (gpt-4o-mini / gpt-4o).
                   </p>
                 </button>
@@ -355,22 +355,22 @@ export const Header: React.FC<HeaderProps> = ({
                 <button
                   type="button"
                   onClick={() => handleProviderSelect('anthropic')}
-                  className={`p-2.5 rounded text-left border transition-all ${
+                  className={`p-3 rounded-lg text-left border transition-all ${
                     selectedProvider === 'anthropic'
-                      ? 'bg-[#1C1C21] border-amber-500 text-zinc-100'
-                      : 'bg-[#09090B] border-[#27272A] text-zinc-400 hover:border-zinc-600'
+                      ? 'bg-[#18181B] border-amber-500 text-zinc-100'
+                      : 'bg-[#0C0C0E] border-zinc-800 text-zinc-400 hover:border-zinc-700'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="font-mono text-xs font-semibold text-zinc-200 flex items-center gap-1.5">
+                    <span className="font-sans text-xs font-medium text-zinc-200 flex items-center gap-1.5">
                       <Bot className="w-3.5 h-3.5 text-amber-400" />
                       Anthropic Claude
                     </span>
-                    <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-amber-500/10 text-amber-400 border border-amber-500/30">
+                    <span className="text-[10px] font-sans px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">
                       Claude 3.5
                     </span>
                   </div>
-                  <p className="text-[10px] text-zinc-400 leading-snug font-sans">
+                  <p className="text-xs text-zinc-400 leading-snug font-sans">
                     Direct browser client access to claude-3-5-sonnet-latest.
                   </p>
                 </button>
@@ -379,22 +379,22 @@ export const Header: React.FC<HeaderProps> = ({
                 <button
                   type="button"
                   onClick={() => handleProviderSelect('custom')}
-                  className={`p-2.5 rounded text-left border transition-all sm:col-span-2 ${
+                  className={`p-3 rounded-lg text-left border transition-all sm:col-span-2 ${
                     selectedProvider === 'custom'
-                      ? 'bg-[#1C1C21] border-[#F97316] text-zinc-100'
-                      : 'bg-[#09090B] border-[#27272A] text-zinc-400 hover:border-zinc-600'
+                      ? 'bg-[#18181B] border-[#F97316] text-zinc-100'
+                      : 'bg-[#0C0C0E] border-zinc-800 text-zinc-400 hover:border-zinc-700'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="font-mono text-xs font-semibold text-zinc-200 flex items-center gap-1.5">
+                    <span className="font-sans text-xs font-medium text-zinc-200 flex items-center gap-1.5">
                       <Server className="w-3.5 h-3.5 text-[#F97316]" />
                       OpenAI-Compatible Custom Endpoint
                     </span>
-                    <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-[#F97316]/10 text-[#F97316] border border-[#F97316]/30">
+                    <span className="text-[10px] font-sans px-1.5 py-0.5 rounded bg-[#F97316]/10 text-[#F97316] border border-[#F97316]/20">
                       Groq / Ollama / DeepSeek
                     </span>
                   </div>
-                  <p className="text-[10px] text-zinc-400 leading-snug font-sans">
+                  <p className="text-xs text-zinc-400 leading-snug font-sans">
                     Connect any OpenAI-compatible server: Groq, OpenRouter, DeepSeek, Mistral, or local Ollama.
                   </p>
                 </button>
@@ -403,11 +403,11 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* Provider Configuration Fields */}
             {selectedProvider !== 'offline' && (
-              <div className="p-3.5 rounded bg-[#09090B] border border-[#27272A] space-y-3 font-mono text-xs">
+              <div className="p-4 rounded-lg bg-[#0C0C0E] border border-zinc-800/70 space-y-3 font-sans text-xs">
                 {/* Custom Preset Quick-Fill Chips */}
                 {selectedProvider === 'custom' && (
                   <div>
-                    <label className="block text-[10px] text-zinc-400 mb-1">QUICK PRESET CHIPS:</label>
+                    <label className="block text-xs font-medium text-zinc-400 mb-1.5">Quick Presets:</label>
                     <div className="flex flex-wrap gap-1.5">
                       {[
                         { name: 'Groq (Llama 3.3)', url: 'https://api.groq.com/openai/v1', model: 'llama-3.3-70b-versatile' },
@@ -420,7 +420,7 @@ export const Header: React.FC<HeaderProps> = ({
                           key={idx}
                           type="button"
                           onClick={() => applyCustomPreset(preset)}
-                          className="px-2 py-0.5 rounded text-[10px] bg-[#18181B] border border-[#27272A] text-zinc-300 hover:text-white hover:border-[#F97316] transition-colors"
+                          className="px-2.5 py-1 rounded-md text-xs bg-[#18181B] border border-zinc-800 text-zinc-300 hover:text-white hover:border-[#F97316] transition-colors font-sans"
                         >
                           {preset.name}
                         </button>
@@ -432,23 +432,23 @@ export const Header: React.FC<HeaderProps> = ({
                 {/* Base URL (for custom) */}
                 {selectedProvider === 'custom' && (
                   <div>
-                    <label className="block text-[11px] text-zinc-400 mb-1">
-                      BASE URL (ENDPOINT):
+                    <label className="block text-xs font-medium text-zinc-400 mb-1">
+                      Base URL (Endpoint):
                     </label>
                     <input
                       type="text"
                       value={tempBaseUrl}
                       onChange={(e) => setTempBaseUrl(e.target.value)}
                       placeholder="https://api.groq.com/openai/v1 or http://localhost:11434/v1"
-                      className="w-full bg-[#111114] border border-[#27272A] focus:border-[#F97316] rounded px-3 py-1.5 text-xs text-zinc-100 outline-none"
+                      className="w-full bg-[#101014] border border-zinc-800 focus:border-[#F97316] rounded-md px-3 py-1.5 text-xs text-zinc-100 outline-none font-mono"
                     />
                   </div>
                 )}
 
                 {/* Model Name */}
                 <div>
-                  <label className="block text-[11px] text-zinc-400 mb-1">
-                    MODEL NAME:
+                  <label className="block text-xs font-medium text-zinc-400 mb-1">
+                    Model Name:
                   </label>
                   <input
                     type="text"
@@ -459,22 +459,22 @@ export const Header: React.FC<HeaderProps> = ({
                       selectedProvider === 'openai' ? 'gpt-4o-mini' :
                       selectedProvider === 'anthropic' ? 'claude-3-5-sonnet-latest' : 'model-name'
                     }
-                    className="w-full bg-[#111114] border border-[#27272A] focus:border-[#F97316] rounded px-3 py-1.5 text-xs text-zinc-100 outline-none"
+                    className="w-full bg-[#101014] border border-zinc-800 focus:border-[#F97316] rounded-md px-3 py-1.5 text-xs text-zinc-100 outline-none font-mono"
                   />
                 </div>
 
                 {/* API Key */}
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <label className="text-[11px] text-zinc-400">
-                      API KEY {selectedProvider === 'custom' && '(OPTIONAL FOR LOCAL OLLAMA)'}:
+                    <label className="text-xs font-medium text-zinc-400">
+                      API Key {selectedProvider === 'custom' && '(Optional for local Ollama)'}:
                     </label>
                     {selectedProvider === 'gemini' && (
                       <a
                         href="https://aistudio.google.com/app/apikey"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[#3B82F6] hover:underline text-[10px] flex items-center gap-0.5"
+                        className="text-[#3B82F6] hover:underline text-xs flex items-center gap-0.5"
                       >
                         Google AI Studio <ExternalLink className="w-2.5 h-2.5" />
                       </a>
@@ -484,7 +484,7 @@ export const Header: React.FC<HeaderProps> = ({
                         href="https://platform.openai.com/api-keys"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-emerald-400 hover:underline text-[10px] flex items-center gap-0.5"
+                        className="text-emerald-400 hover:underline text-xs flex items-center gap-0.5"
                       >
                         OpenAI Platform <ExternalLink className="w-2.5 h-2.5" />
                       </a>
@@ -494,7 +494,7 @@ export const Header: React.FC<HeaderProps> = ({
                         href="https://console.anthropic.com/settings/keys"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-amber-400 hover:underline text-[10px] flex items-center gap-0.5"
+                        className="text-amber-400 hover:underline text-xs flex items-center gap-0.5"
                       >
                         Anthropic Console <ExternalLink className="w-2.5 h-2.5" />
                       </a>
@@ -505,28 +505,28 @@ export const Header: React.FC<HeaderProps> = ({
                     value={tempApiKey}
                     onChange={(e) => setTempApiKey(e.target.value)}
                     placeholder={selectedProvider === 'custom' ? 'Optional key or Bearer token' : 'sk-... or AIzaSy...'}
-                    className="w-full bg-[#111114] border border-[#27272A] focus:border-[#F97316] rounded px-3 py-1.5 text-xs text-zinc-100 outline-none"
+                    className="w-full bg-[#101014] border border-zinc-800 focus:border-[#F97316] rounded-md px-3 py-1.5 text-xs text-zinc-100 outline-none font-mono"
                   />
                 </div>
               </div>
             )}
 
             {/* In-Memory RAM Security Notice */}
-            <div className="p-2.5 bg-[#18181B] border border-[#27272A] rounded text-[11px] text-zinc-300 flex items-start gap-2 font-sans">
+            <div className="p-3 bg-[#18181B] border border-zinc-800/70 rounded-lg text-xs text-zinc-300 flex items-start gap-2.5 font-sans">
               <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
               <span>
-                <strong className="text-zinc-100">RAM-Only Guarantee:</strong> Configuration and credentials exist solely in memory during your active browser session. Never written to localStorage, cookies, or remote telemetry.
+                <strong className="text-zinc-100 font-medium">RAM-only guarantee:</strong> Credentials exist solely in memory during your active browser session. Never saved to localStorage, cookies, or remote logs.
               </span>
             </div>
 
             {/* Footer Buttons */}
-            <div className="flex items-center justify-between pt-3 border-t border-[#27272A]">
+            <div className="flex items-center justify-between pt-3 border-t border-zinc-800/70">
               <div>
                 {aiConfig.provider !== 'offline' && (
                   <button
                     type="button"
                     onClick={handleDisconnect}
-                    className="px-2.5 py-1.5 rounded text-xs font-mono text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/20"
+                    className="px-3 py-1.5 rounded-md text-xs font-sans font-medium text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/20 transition-colors"
                   >
                     Reset to Offline
                   </button>
@@ -536,14 +536,14 @@ export const Header: React.FC<HeaderProps> = ({
                 <button
                   type="button"
                   onClick={() => setIsAiModalOpen(false)}
-                  className="px-3 py-1.5 rounded text-xs font-mono text-zinc-400 hover:text-zinc-200 border border-[#27272A] hover:bg-[#18181B]"
+                  className="px-3 py-1.5 rounded-md text-xs font-sans font-medium text-zinc-400 hover:text-zinc-200 border border-zinc-800 hover:bg-[#18181B] transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="button"
                   onClick={handleSaveConfig}
-                  className="px-3 py-1.5 rounded text-xs font-mono font-medium text-white bg-[#F97316] hover:bg-[#EA580C] transition-colors"
+                  className="px-3.5 py-1.5 rounded-md text-xs font-sans font-medium text-white bg-[#F97316] hover:bg-[#EA580C] transition-colors"
                 >
                   Save to Session
                 </button>

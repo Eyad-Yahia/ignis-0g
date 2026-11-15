@@ -134,19 +134,19 @@ export const DatasetExplorer: React.FC<DatasetExplorerProps> = ({
   };
 
   return (
-    <div className="space-y-4">
-      {/* Banner */}
-      <div className="bg-[#111114] border border-[#27272A] rounded p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div className="space-y-6">
+      {/* Header Banner — de-boxed & breathing */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="p-1 rounded bg-[#1C1C21] text-[#F97316]">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-lg bg-[#18181B] border border-zinc-800 flex items-center justify-center text-[#F97316]">
               <Database className="w-4 h-4" />
-            </span>
-            <h2 className="text-sm font-semibold font-mono text-zinc-100 tracking-wide uppercase">
+            </div>
+            <h2 className="text-base font-semibold font-sans text-zinc-100 tracking-tight">
               NASA Physical Sciences Informatics (PSI) Curated Dataset
             </h2>
           </div>
-          <p className="text-xs text-zinc-400 mt-1 max-w-2xl font-sans">
+          <p className="text-xs text-zinc-400 mt-1 max-w-2xl font-sans leading-relaxed">
             17 authentic, verified combustion flight and ground experiments curated from the NASA PSI repository across Saffire, FLEX, BASS, ACME, SoFIE, BRE, and SLICE.
           </p>
         </div>
@@ -154,14 +154,14 @@ export const DatasetExplorer: React.FC<DatasetExplorerProps> = ({
         <div className="flex items-center gap-2">
           <button
             onClick={exportJSON}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-[#18181B] hover:bg-[#27272A] border border-[#27272A] text-zinc-200 font-mono text-xs transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#101014] hover:bg-[#18181B] border border-zinc-800 text-zinc-200 font-sans text-xs font-medium transition-colors"
           >
             <FileJson className="w-3.5 h-3.5 text-[#3B82F6]" />
             <span>Export JSON</span>
           </button>
           <button
             onClick={exportCSV}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-[#18181B] hover:bg-[#27272A] border border-[#27272A] text-zinc-200 font-mono text-xs transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#101014] hover:bg-[#18181B] border border-zinc-800 text-zinc-200 font-sans text-xs font-medium transition-colors"
           >
             <Download className="w-3.5 h-3.5 text-[#F97316]" />
             <span>Export CSV</span>
@@ -170,7 +170,7 @@ export const DatasetExplorer: React.FC<DatasetExplorerProps> = ({
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-[#111114] border border-[#27272A] rounded p-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="bg-[#0E0E12] border border-zinc-800/60 rounded-xl p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {/* Search */}
         <div className="relative">
           <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
@@ -179,17 +179,17 @@ export const DatasetExplorer: React.FC<DatasetExplorerProps> = ({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search record, fuel, phenomenon..."
-            className="w-full pl-8 pr-3 py-1.5 rounded bg-[#09090B] border border-[#27272A] text-xs font-mono text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:border-[#F97316]"
+            className="w-full pl-8 pr-3 py-1.5 rounded-lg bg-[#09090B] border border-zinc-800 text-xs font-sans text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:border-[#F97316]"
           />
         </div>
 
         {/* Program Filter */}
         <div className="flex items-center gap-2">
-          <span className="text-[11px] font-mono text-zinc-400 whitespace-nowrap">Program:</span>
+          <span className="text-xs font-sans text-zinc-400 whitespace-nowrap">Program:</span>
           <select
             value={programFilter}
             onChange={(e) => setProgramFilter(e.target.value)}
-            className="w-full px-2 py-1.5 rounded bg-[#09090B] border border-[#27272A] text-xs font-mono text-zinc-200 focus:outline-none focus:border-[#F97316]"
+            className="w-full px-2.5 py-1.5 rounded-lg bg-[#09090B] border border-zinc-800 text-xs font-sans text-zinc-200 focus:outline-none focus:border-[#F97316]"
           >
             {programs.map(p => (
               <option key={p} value={p}>{p === 'ALL' ? 'All Programs' : p}</option>
@@ -199,11 +199,11 @@ export const DatasetExplorer: React.FC<DatasetExplorerProps> = ({
 
         {/* Gravity Filter */}
         <div className="flex items-center gap-2">
-          <span className="text-[11px] font-mono text-zinc-400 whitespace-nowrap">Gravity:</span>
+          <span className="text-xs font-sans text-zinc-400 whitespace-nowrap">Gravity:</span>
           <select
             value={gravityFilter}
             onChange={(e) => setGravityFilter(e.target.value)}
-            className="w-full px-2 py-1.5 rounded bg-[#09090B] border border-[#27272A] text-xs font-mono text-zinc-200 focus:outline-none focus:border-[#F97316]"
+            className="w-full px-2.5 py-1.5 rounded-lg bg-[#09090B] border border-zinc-800 text-xs font-sans text-zinc-200 focus:outline-none focus:border-[#F97316]"
           >
             {gravities.map(g => (
               <option key={g} value={g}>{g === 'ALL' ? 'All Gravities' : g}</option>
@@ -213,11 +213,11 @@ export const DatasetExplorer: React.FC<DatasetExplorerProps> = ({
 
         {/* Provenance Filter */}
         <div className="flex items-center gap-2">
-          <span className="text-[11px] font-mono text-zinc-400 whitespace-nowrap">Provenance:</span>
+          <span className="text-xs font-sans text-zinc-400 whitespace-nowrap">Provenance:</span>
           <select
             value={provenanceFilter}
             onChange={(e) => setProvenanceFilter(e.target.value)}
-            className="w-full px-2 py-1.5 rounded bg-[#09090B] border border-[#27272A] text-xs font-mono text-zinc-200 focus:outline-none focus:border-[#F97316]"
+            className="w-full px-2.5 py-1.5 rounded-lg bg-[#09090B] border border-zinc-800 text-xs font-sans text-zinc-200 focus:outline-none focus:border-[#F97316]"
           >
             {provenances.map(pr => (
               <option key={pr} value={pr}>{pr === 'ALL' ? 'All Provenance' : pr}</option>
@@ -227,42 +227,42 @@ export const DatasetExplorer: React.FC<DatasetExplorerProps> = ({
       </div>
 
       {/* Telemetry Table */}
-      <div className="bg-[#111114] border border-[#27272A] rounded overflow-hidden">
-        <div className="p-3 border-b border-[#27272A] flex items-center justify-between text-xs font-mono text-zinc-400">
-          <span>Displaying <strong className="text-zinc-100">{filteredExperiments.length}</strong> of <strong className="text-zinc-100">{nasaExperiments.length}</strong> Verified Experiments</span>
-          <span className="text-zinc-500 text-[11px]">Click row to open engineering dossier</span>
+      <div className="bg-[#0E0E12] border border-zinc-800/60 rounded-xl overflow-hidden shadow-sm">
+        <div className="p-4 border-b border-zinc-800/70 flex items-center justify-between text-xs font-sans text-zinc-400">
+          <span>Displaying <strong className="text-zinc-100 font-mono tabular-nums">{filteredExperiments.length}</strong> of <strong className="text-zinc-100 font-mono tabular-nums">{nasaExperiments.length}</strong> verified experiments</span>
+          <span className="text-zinc-500 text-xs">Click row to open engineering dossier</span>
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs font-mono">
-            <thead className="bg-[#09090B] border-b border-[#27272A] text-zinc-400 uppercase text-[10px] tracking-wider">
+          <table className="w-full text-left text-xs font-sans">
+            <thead className="bg-[#09090B] border-b border-zinc-800/70 text-zinc-400 text-xs font-medium">
               <tr>
-                <th className="py-2.5 px-3">RECORD ID</th>
-                <th className="py-2.5 px-3">PSI RECORD</th>
-                <th className="py-2.5 px-3">PROVENANCE</th>
-                <th className="py-2.5 px-3">MATERIAL SAMPLE</th>
-                <th className="py-2.5 px-3">GRAVITY</th>
-                <th className="py-2.5 px-3">O₂ %</th>
-                <th className="py-2.5 px-3">PRESSURE</th>
-                <th className="py-2.5 px-3">SPREAD RATE</th>
-                <th className="py-2.5 px-3 text-right">ACTION</th>
+                <th className="py-3 px-4">Record ID</th>
+                <th className="py-3 px-4">PSI Record</th>
+                <th className="py-3 px-4">Provenance</th>
+                <th className="py-3 px-4">Material sample</th>
+                <th className="py-3 px-4">Gravity</th>
+                <th className="py-3 px-4">O₂ %</th>
+                <th className="py-3 px-4">Pressure</th>
+                <th className="py-3 px-4">Spread rate</th>
+                <th className="py-3 px-4 text-right">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#1C1C21] text-zinc-300">
+            <tbody className="divide-y divide-zinc-800/40 text-zinc-300">
               {filteredExperiments.map(exp => (
                 <tr
                   key={exp.id}
                   onClick={() => setActiveExp(exp)}
-                  className="hover:bg-[#18181B] transition-colors cursor-pointer group"
+                  className="hover:bg-[#16161C] transition-colors cursor-pointer group"
                 >
-                  <td className="py-2.5 px-3 font-bold text-zinc-100 whitespace-nowrap">
+                  <td className="py-3 px-4 font-mono font-semibold text-zinc-100 whitespace-nowrap">
                     {exp.id}
                   </td>
-                  <td className="py-2.5 px-3 text-[#3B82F6] font-bold">
+                  <td className="py-3 px-4 text-[#3B82F6] font-mono font-semibold">
                     {exp.psiRecord}
                   </td>
-                  <td className="py-2.5 px-3">
-                    <span className={`px-1.5 py-0.2 rounded text-[10px] font-semibold ${
+                  <td className="py-3 px-4">
+                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-sans font-medium ${
                       exp.provenance === 'Published NASA Flight Data'
                         ? 'bg-[#3B82F6]/10 text-[#3B82F6] border border-[#3B82F6]/20'
                         : 'bg-zinc-800 text-zinc-400 border border-zinc-700'
@@ -270,23 +270,23 @@ export const DatasetExplorer: React.FC<DatasetExplorerProps> = ({
                       {exp.provenance === 'Published NASA Flight Data' ? 'Flight Data' : 'Ground Baseline'}
                     </span>
                   </td>
-                  <td className="py-2.5 px-3 text-zinc-200">
+                  <td className="py-3 px-4 text-zinc-200 font-medium">
                     {exp.material}
                   </td>
-                  <td className="py-2.5 px-3 whitespace-nowrap">
+                  <td className="py-3 px-4 whitespace-nowrap text-zinc-400">
                     {exp.gravity}
                   </td>
-                  <td className="py-2.5 px-3 tabular-nums font-semibold text-zinc-100">
+                  <td className="py-3 px-4 font-mono tabular-nums font-semibold text-zinc-100">
                     {exp.oxygenPercent.toFixed(1)}%
                   </td>
-                  <td className="py-2.5 px-3 tabular-nums">
+                  <td className="py-3 px-4 font-mono tabular-nums text-zinc-300">
                     {exp.pressureKpa} kPa
                   </td>
-                  <td className="py-2.5 px-3 tabular-nums font-bold text-[#F97316]">
+                  <td className="py-3 px-4 font-mono tabular-nums font-semibold text-[#F97316]">
                     {exp.flameSpreadRateMmSec.toFixed(2)} mm/s
                   </td>
-                  <td className="py-2.5 px-3 text-right">
-                    <button className="px-2 py-1 rounded bg-[#18181B] text-zinc-400 group-hover:text-zinc-100 group-hover:bg-[#27272A] transition-colors text-[11px]">
+                  <td className="py-3 px-4 text-right">
+                    <button className="px-2.5 py-1 rounded-md bg-[#18181B] text-zinc-400 group-hover:text-zinc-100 group-hover:bg-[#27272A] transition-colors text-xs font-sans">
                       Inspect
                     </button>
                   </td>
@@ -305,79 +305,79 @@ export const DatasetExplorer: React.FC<DatasetExplorerProps> = ({
             if (e.target === e.currentTarget) setActiveExp(null);
           }}
         >
-          <div className="w-full max-w-xl bg-[#111114] border-l border-[#27272A] h-full overflow-y-auto p-6 space-y-5 font-mono shadow-2xl">
+          <div className="w-full max-w-xl bg-[#0E0E12] border-l border-zinc-800/80 h-full overflow-y-auto p-6 space-y-6 font-sans shadow-2xl">
             {/* Header */}
-            <div className="flex items-start justify-between pb-4 border-b border-[#27272A]">
+            <div className="flex items-start justify-between pb-4 border-b border-zinc-800/70">
               <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#F97316]/10 text-[#F97316] border border-[#F97316]/30">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className="px-2 py-0.5 rounded-md text-xs font-mono font-semibold bg-[#F97316]/10 text-[#F97316] border border-[#F97316]/30">
                     {activeExp.id}
                   </span>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#3B82F6]/10 text-[#3B82F6] border border-[#3B82F6]/30">
+                  <span className="px-2 py-0.5 rounded-md text-xs font-mono font-semibold bg-[#3B82F6]/10 text-[#3B82F6] border border-[#3B82F6]/30">
                     {activeExp.psiRecord}
                   </span>
-                  <span className="text-[10px] text-zinc-400">
+                  <span className="text-xs text-zinc-400 font-sans">
                     {activeExp.provenance}
                   </span>
                 </div>
-                <h3 className="text-base font-bold text-zinc-100 font-sans">
+                <h3 className="text-lg font-semibold text-zinc-100 font-sans tracking-tight">
                   {activeExp.program}
                 </h3>
               </div>
               <button
                 onClick={() => setActiveExp(null)}
-                className="p-1 rounded text-zinc-400 hover:text-zinc-100 hover:bg-[#18181B]"
+                className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-100 hover:bg-[#18181B] transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Quantitative Flight Telemetry Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs">
-              <div className="p-2.5 rounded bg-[#09090B] border border-[#27272A]">
-                <span className="text-[10px] text-zinc-500 block">GRAVITY REGIME:</span>
-                <span className="text-zinc-200 font-bold">{activeExp.gravity}</span>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+              <div className="p-3 rounded-lg bg-[#08080A] border border-zinc-800/70">
+                <span className="text-[11px] font-sans text-zinc-400 block mb-0.5">Gravity regime</span>
+                <span className="text-zinc-200 font-medium font-sans">{activeExp.gravity}</span>
               </div>
-              <div className="p-2.5 rounded bg-[#09090B] border border-[#27272A]">
-                <span className="text-[10px] text-zinc-500 block">OXYGEN FRACTION:</span>
-                <span className="text-[#F97316] font-bold tabular-nums">{activeExp.oxygenPercent}% O₂</span>
+              <div className="p-3 rounded-lg bg-[#08080A] border border-zinc-800/70">
+                <span className="text-[11px] font-sans text-zinc-400 block mb-0.5">Oxygen fraction</span>
+                <span className="text-[#F97316] font-semibold font-mono tabular-nums">{activeExp.oxygenPercent}% O₂</span>
               </div>
-              <div className="p-2.5 rounded bg-[#09090B] border border-[#27272A]">
-                <span className="text-[10px] text-zinc-500 block">CABIN PRESSURE:</span>
-                <span className="text-zinc-200 font-bold tabular-nums">{activeExp.pressureKpa} kPa</span>
+              <div className="p-3 rounded-lg bg-[#08080A] border border-zinc-800/70">
+                <span className="text-[11px] font-sans text-zinc-400 block mb-0.5">Cabin pressure</span>
+                <span className="text-zinc-200 font-semibold font-mono tabular-nums">{activeExp.pressureKpa} kPa</span>
               </div>
-              <div className="p-2.5 rounded bg-[#09090B] border border-[#27272A]">
-                <span className="text-[10px] text-zinc-500 block">AIRFLOW VELOCITY:</span>
-                <span className="text-zinc-200 font-bold tabular-nums">{activeExp.airflowCmSec} cm/s</span>
+              <div className="p-3 rounded-lg bg-[#08080A] border border-zinc-800/70">
+                <span className="text-[11px] font-sans text-zinc-400 block mb-0.5">Airflow velocity</span>
+                <span className="text-zinc-200 font-semibold font-mono tabular-nums">{activeExp.airflowCmSec} cm/s</span>
               </div>
-              <div className="p-2.5 rounded bg-[#09090B] border border-[#27272A]">
-                <span className="text-[10px] text-zinc-500 block">FLAME SPREAD:</span>
-                <span className="text-[#F97316] font-bold tabular-nums">{activeExp.flameSpreadRateMmSec} mm/s</span>
+              <div className="p-3 rounded-lg bg-[#08080A] border border-zinc-800/70">
+                <span className="text-[11px] font-sans text-zinc-400 block mb-0.5">Flame spread</span>
+                <span className="text-[#F97316] font-semibold font-mono tabular-nums">{activeExp.flameSpreadRateMmSec} mm/s</span>
               </div>
-              <div className="p-2.5 rounded bg-[#09090B] border border-[#27272A]">
-                <span className="text-[10px] text-zinc-500 block">PEAK REACTION TEMP:</span>
-                <span className="text-zinc-200 font-bold tabular-nums">{activeExp.peakTempK} K</span>
+              <div className="p-3 rounded-lg bg-[#08080A] border border-zinc-800/70">
+                <span className="text-[11px] font-sans text-zinc-400 block mb-0.5">Peak reaction temp</span>
+                <span className="text-zinc-200 font-semibold font-mono tabular-nums">{activeExp.peakTempK} K</span>
               </div>
             </div>
 
             {/* Material & Phenomenon */}
             <div className="space-y-3 text-xs">
               <div>
-                <span className="text-zinc-500 text-[10px] block">MATERIAL / FUEL SAMPLE:</span>
-                <span className="text-zinc-200 font-semibold text-sm">{activeExp.material}</span>
-                <span className="text-zinc-400 text-[11px] block mt-0.5">Category: {activeExp.materialCategory}</span>
+                <span className="text-zinc-400 text-xs font-sans block">Material sample</span>
+                <span className="text-zinc-100 font-semibold text-sm font-sans mt-0.5 block">{activeExp.material}</span>
+                <span className="text-zinc-400 text-xs font-sans block mt-0.5">Category: {activeExp.materialCategory}</span>
               </div>
 
               <div>
-                <span className="text-zinc-500 text-[10px] block">OBSERVED PHENOMENON:</span>
-                <span className="text-zinc-200 font-semibold">{activeExp.phenomenon}</span>
+                <span className="text-zinc-400 text-xs font-sans block">Observed phenomenon</span>
+                <span className="text-zinc-200 font-medium font-sans mt-0.5 block">{activeExp.phenomenon}</span>
               </div>
             </div>
 
             {/* Scientific Finding */}
-            <div className="p-3.5 rounded bg-[#18181B] border border-[#27272A] space-y-1.5 text-xs font-sans">
-              <span className="text-[10px] font-mono font-bold text-[#3B82F6] uppercase block">
-                SCIENTIFIC TAKEAWAY & FLIGHT DISCOVERY:
+            <div className="p-4 rounded-xl bg-[#141419] border border-zinc-800/70 space-y-1.5 text-xs font-sans">
+              <span className="text-xs font-semibold text-[#3B82F6] uppercase tracking-wider block font-sans">
+                Scientific Takeaway & Discovery
               </span>
               <p className="text-zinc-300 leading-relaxed">
                 {activeExp.finding}
@@ -385,9 +385,9 @@ export const DatasetExplorer: React.FC<DatasetExplorerProps> = ({
             </div>
 
             {/* Safety Guidance */}
-            <div className="p-3.5 rounded bg-[#18181B] border border-[#27272A] space-y-1.5 text-xs font-sans">
-              <span className="text-[10px] font-mono font-bold text-[#F97316] uppercase block">
-                NASA-STD-6001B ENGINEERING GUIDANCE:
+            <div className="p-4 rounded-xl bg-[#141419] border border-zinc-800/70 space-y-1.5 text-xs font-sans">
+              <span className="text-xs font-semibold text-[#F97316] uppercase tracking-wider block font-sans">
+                NASA-STD-6001B Engineering Guidance
               </span>
               <p className="text-zinc-200 leading-relaxed">
                 {activeExp.safetyRecommendation}
@@ -395,7 +395,7 @@ export const DatasetExplorer: React.FC<DatasetExplorerProps> = ({
             </div>
 
             {/* Facility & Citation */}
-            <div className="pt-3 border-t border-[#27272A] text-[11px] space-y-1 text-zinc-400">
+            <div className="pt-3 border-t border-zinc-800/70 text-xs space-y-1.5 text-zinc-400 font-sans">
               <div>
                 <span className="text-zinc-500">Facility: </span>
                 <span className="text-zinc-300">{activeExp.facility}</span>

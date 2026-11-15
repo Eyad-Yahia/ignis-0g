@@ -77,51 +77,51 @@ export const InsightGraph: React.FC<InsightGraphProps> = ({
   ];
 
   return (
-    <div className="space-y-4">
-      {/* Header Banner */}
-      <div className="bg-[#111114] border border-[#27272A] rounded p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div className="space-y-6">
+      {/* Header Banner — de-boxed & breathing */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="p-1 rounded bg-[#1C1C21] text-[#F97316]">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-lg bg-[#18181B] border border-zinc-800 flex items-center justify-center text-[#F97316]">
               <Network className="w-4 h-4" />
-            </span>
-            <h2 className="text-sm font-semibold font-mono text-zinc-100 tracking-wide uppercase">
+            </div>
+            <h2 className="text-base font-semibold font-sans text-zinc-100 tracking-tight">
               Cross-Experiment Telemetry Correlation & Anomaly Graph
             </h2>
           </div>
-          <p className="text-xs text-zinc-400 mt-1 max-w-2xl font-sans">
+          <p className="text-xs text-zinc-400 mt-1 max-w-2xl font-sans leading-relaxed">
             Multi-axis correlation across 17 verified NASA PSI flight experiments. Visualizes flame spread kinetics, ventilation thresholds, and non-buoyant combustion limits.
           </p>
         </div>
 
         {/* Legend */}
-        <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
-          <span className="flex items-center gap-1.5 text-[#3B82F6]">
+        <div className="flex flex-wrap items-center gap-3.5 text-xs font-sans">
+          <span className="flex items-center gap-1.5 text-[#3B82F6] font-medium">
             <span className="w-2 h-2 rounded-full bg-[#3B82F6]" /> 0.0g ISS
           </span>
-          <span className="flex items-center gap-1.5 text-indigo-400">
+          <span className="flex items-center gap-1.5 text-indigo-400 font-medium">
             <span className="w-2 h-2 rounded-full bg-indigo-400" /> 0.16g Moon
           </span>
-          <span className="flex items-center gap-1.5 text-[#F97316]">
+          <span className="flex items-center gap-1.5 text-[#F97316] font-medium">
             <span className="w-2 h-2 rounded-full bg-[#F97316]" /> 0.38g Mars
           </span>
-          <span className="flex items-center gap-1.5 text-amber-400">
+          <span className="flex items-center gap-1.5 text-amber-400 font-medium">
             <span className="w-2 h-2 rounded-full bg-amber-400" /> 1.0g Earth
           </span>
         </div>
       </div>
 
       {/* Grid of Two Interactive Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Chart A: Multi-Axis Scatter Plot */}
-        <div className="bg-[#111114] border border-[#27272A] rounded p-4 space-y-3">
-          <div className="border-b border-[#27272A] pb-2 flex items-center justify-between">
+        <div className="bg-[#0E0E12] border border-zinc-800/60 rounded-xl p-5 space-y-4 shadow-sm">
+          <div className="border-b border-zinc-800/70 pb-3 flex items-center justify-between">
             <div className="space-y-0.5">
-              <h3 className="text-xs font-mono font-semibold text-zinc-200 uppercase flex items-center gap-2">
+              <h3 className="text-xs font-sans font-semibold text-zinc-200 uppercase tracking-wider flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#F97316]" />
                 Flame Spread Rate vs. Oxygen Concentration
               </h3>
-              <p className="text-[10px] text-zinc-400 font-mono">
+              <p className="text-xs text-zinc-400 font-sans">
                 X: Oxygen (%) • Y: Spread Rate (mm/s) • Point Size: Peak Temp (K)
               </p>
             </div>
@@ -156,16 +156,16 @@ export const InsightGraph: React.FC<InsightGraphProps> = ({
                     if (active && payload && payload.length) {
                       const data = payload[0].payload as NASAExperiment;
                       return (
-                        <div className="bg-[#09090B] border border-[#27272A] p-2.5 rounded font-mono text-xs shadow-2xl space-y-1">
-                          <div className="text-[#3B82F6] font-bold">{data.id} ({data.psiRecord})</div>
-                          <div className="text-zinc-200 font-semibold">{data.material}</div>
-                          <div className="text-zinc-400 text-[11px]">
-                            Regime: <span className="text-zinc-200">{data.gravity}</span>
+                        <div className="bg-[#09090B] border border-zinc-800 p-3 rounded-lg font-sans text-xs shadow-2xl space-y-1.5">
+                          <div className="text-[#3B82F6] font-mono font-bold">{data.id} ({data.psiRecord})</div>
+                          <div className="text-zinc-100 font-medium">{data.material}</div>
+                          <div className="text-zinc-400 text-xs">
+                            Regime: <span className="text-zinc-200 font-medium">{data.gravity}</span>
                           </div>
-                          <div className="text-zinc-400 text-[11px] tabular-nums">
-                            Spread: <span className="text-[#F97316] font-bold">{data.flameSpreadRateMmSec} mm/s</span> | Temp: {data.peakTempK}K
+                          <div className="text-zinc-400 text-xs font-mono tabular-nums">
+                            Spread: <span className="text-[#F97316] font-semibold">{data.flameSpreadRateMmSec} mm/s</span> | Temp: {data.peakTempK}K
                           </div>
-                          <div className="text-[10px] text-zinc-500 pt-1 border-t border-[#27272A]">
+                          <div className="text-[10px] text-zinc-500 pt-1 border-t border-zinc-800">
                             Click point to inspect engineering dossier
                           </div>
                         </div>
@@ -206,21 +206,21 @@ export const InsightGraph: React.FC<InsightGraphProps> = ({
             </ResponsiveContainer>
           </div>
 
-          <div className="text-[11px] font-mono text-zinc-400 flex items-center justify-between pt-1 border-t border-[#1C1C21]">
+          <div className="text-xs font-sans text-zinc-400 flex items-center justify-between pt-2 border-t border-zinc-800/40">
             <span>Microgravity points form a lower plateau due to pure diffusion limits</span>
-            <span className="text-[#F97316] font-bold">Artemis 34% O₂ (BRE-02): {nasaExperiments.find(e => e.id === 'NASA-BRE-02')?.flameSpreadRateMmSec} mm/s</span>
+            <span className="text-[#F97316] font-medium font-mono tabular-nums">Artemis 34% O₂ (BRE-02): {nasaExperiments.find(e => e.id === 'NASA-BRE-02')?.flameSpreadRateMmSec} mm/s</span>
           </div>
         </div>
 
         {/* Chart B: Airflow Velocity vs Combustion Sustainability Profile */}
-        <div className="bg-[#111114] border border-[#27272A] rounded p-4 space-y-3">
-          <div className="border-b border-[#27272A] pb-2 flex items-center justify-between">
+        <div className="bg-[#0E0E12] border border-zinc-800/60 rounded-xl p-5 space-y-4 shadow-sm">
+          <div className="border-b border-zinc-800/70 pb-3 flex items-center justify-between">
             <div className="space-y-0.5">
-              <h3 className="text-xs font-mono font-semibold text-zinc-200 uppercase flex items-center gap-2">
+              <h3 className="text-xs font-sans font-semibold text-zinc-200 uppercase tracking-wider flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-emerald-400" />
                 Airflow Velocity vs. Combustion Sustainability
               </h3>
-              <p className="text-[10px] text-zinc-400 font-mono">
+              <p className="text-xs text-zinc-400 font-sans">
                 Shaded Zone (2.5–15 cm/s): Forced Convection Survival Window in 0g
               </p>
             </div>
@@ -243,9 +243,9 @@ export const InsightGraph: React.FC<InsightGraphProps> = ({
                   tick={{ fill: '#A1A1AA', fontSize: 11, fontFamily: 'monospace' }}
                 />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#09090B', borderColor: '#27272A', borderRadius: '4px', fontFamily: 'monospace', fontSize: '11px' }}
+                  contentStyle={{ backgroundColor: '#09090B', borderColor: '#27272A', borderRadius: '8px', fontFamily: 'sans-serif', fontSize: '12px' }}
                 />
-                <Legend wrapperStyle={{ fontSize: '11px', fontFamily: 'monospace' }} />
+                <Legend wrapperStyle={{ fontSize: '12px', fontFamily: 'sans-serif' }} />
 
                 <ReferenceArea
                   x1={2.5}
@@ -279,45 +279,45 @@ export const InsightGraph: React.FC<InsightGraphProps> = ({
             </ResponsiveContainer>
           </div>
 
-          <div className="text-[11px] font-mono text-zinc-400 flex items-center justify-between pt-1 border-t border-[#1C1C21]">
+          <div className="text-xs font-sans text-zinc-400 flex items-center justify-between pt-2 border-t border-zinc-800/40">
             <span className="text-red-400">At 0 cm/s: Flame suffocates (BASS Paradox)</span>
-            <span className="text-emerald-400 font-bold">2.5–15 cm/s: Sustainable forced burn</span>
+            <span className="text-emerald-400 font-medium">2.5–15 cm/s: Sustainable forced burn</span>
             <span className="text-zinc-500">&gt;20 cm/s: Convective blow-off</span>
           </div>
         </div>
       </div>
 
       {/* Discovered NASA Flight Anomalies Strip */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs">
-        <div className="p-3.5 rounded bg-[#111114] border border-[#27272A] space-y-2">
-          <div className="flex items-center justify-between text-[11px]">
-            <span className="text-[#F97316] font-bold">ANOMALY 01</span>
-            <span className="px-1.5 py-0.2 rounded bg-[#18181B] text-zinc-400 text-[10px]">NASA SAFFIRE-I</span>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-sans text-xs">
+        <div className="p-5 rounded-xl bg-[#0E0E12] border border-zinc-800/60 space-y-2.5">
+          <div className="flex items-center justify-between text-xs">
+            <span className="text-[#F97316] font-semibold tracking-wider text-[11px]">ANOMALY 01</span>
+            <span className="px-2 py-0.5 rounded-full bg-[#18181B] text-zinc-400 text-[10px] font-mono">NASA SAFFIRE-I</span>
           </div>
-          <h4 className="text-xs font-bold text-zinc-100">The Saffire Ventilation Paradox</h4>
-          <p className="text-[11px] text-zinc-400 font-sans leading-relaxed">
-            In microgravity, maximum flammability occurs at modest forced airflow (10-15 cm/s), not zero and not maximum flow. Zero flow suffocates the flame in stagnant CO₂, while high flow convectively cools it.
+          <h4 className="text-sm font-semibold text-zinc-100 font-sans">The Saffire Ventilation Paradox</h4>
+          <p className="text-xs text-zinc-400 font-sans leading-relaxed">
+            In microgravity, maximum flammability occurs at modest forced airflow (10–15 cm/s), not zero and not maximum flow. Zero flow suffocates the flame in stagnant CO₂, while high flow convectively cools it.
           </p>
         </div>
 
-        <div className="p-3.5 rounded bg-[#111114] border border-[#27272A] space-y-2">
-          <div className="flex items-center justify-between text-[11px]">
-            <span className="text-indigo-400 font-bold">ANOMALY 02</span>
-            <span className="px-1.5 py-0.2 rounded bg-[#18181B] text-zinc-400 text-[10px]">NASA FLEX-ICE</span>
+        <div className="p-5 rounded-xl bg-[#0E0E12] border border-zinc-800/60 space-y-2.5">
+          <div className="flex items-center justify-between text-xs">
+            <span className="text-indigo-400 font-semibold tracking-wider text-[11px]">ANOMALY 02</span>
+            <span className="px-2 py-0.5 rounded-full bg-[#18181B] text-zinc-400 text-[10px] font-mono">NASA FLEX-ICE</span>
           </div>
-          <h4 className="text-xs font-bold text-zinc-100">Low-Oxygen Cool Flame Longevity</h4>
-          <p className="text-[11px] text-zinc-400 font-sans leading-relaxed">
+          <h4 className="text-sm font-semibold text-zinc-100 font-sans">Low-Oxygen Cool Flame Longevity</h4>
+          <p className="text-xs text-zinc-400 font-sans leading-relaxed">
             Reducing ambient O₂ to 18% extends low-temperature cool flame duration due to reduced radiative and thermal quenching of intermediate peroxy radicals [NASA-FLEX-03].
           </p>
         </div>
 
-        <div className="p-3.5 rounded bg-[#111114] border border-[#27272A] space-y-2">
-          <div className="flex items-center justify-between text-[11px]">
-            <span className="text-amber-400 font-bold">ANOMALY 03</span>
-            <span className="px-1.5 py-0.2 rounded bg-[#18181B] text-zinc-400 text-[10px]">NASA SLICE / ACME</span>
+        <div className="p-5 rounded-xl bg-[#0E0E12] border border-zinc-800/60 space-y-2.5">
+          <div className="flex items-center justify-between text-xs">
+            <span className="text-amber-400 font-semibold tracking-wider text-[11px]">ANOMALY 03</span>
+            <span className="px-2 py-0.5 rounded-full bg-[#18181B] text-zinc-400 text-[10px] font-mono">NASA SLICE / ACME</span>
           </div>
-          <h4 className="text-xs font-bold text-zinc-100">Soot Super-Aggregation & High CO</h4>
-          <p className="text-[11px] text-zinc-400 font-sans leading-relaxed">
+          <h4 className="text-sm font-semibold text-zinc-100 font-sans">Soot Super-Aggregation & High CO</h4>
+          <p className="text-xs text-zinc-400 font-sans leading-relaxed">
             Absence of buoyant acceleration prolongs soot particle residence times. Soot aggregates into large branched chain structures, impeding oxygen and dramatically elevating carbon monoxide off-gassing.
           </p>
         </div>

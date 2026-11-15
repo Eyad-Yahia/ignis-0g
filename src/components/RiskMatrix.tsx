@@ -189,48 +189,48 @@ export const RiskMatrix: React.FC = () => {
   const rawSelectedMaterial = materialsCatalog.find(m => m.id === selectedMaterialId)!;
 
   return (
-    <div className="space-y-4">
-      {/* Module Title Strip */}
-      <div className="bg-[#111114] border border-[#27272A] rounded p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div className="space-y-6">
+      {/* Module Header Section — de-boxed & breathing */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="p-1 rounded bg-[#1C1C21] text-[#F97316]">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-lg bg-[#18181B] border border-zinc-800 flex items-center justify-center text-[#F97316]">
               <ShieldAlert className="w-4 h-4" />
-            </span>
-            <h2 className="text-sm font-semibold font-mono text-zinc-100 tracking-wide uppercase">
+            </div>
+            <h2 className="text-base font-semibold font-sans text-zinc-100 tracking-tight">
               Spacecraft Material Risk Matrix & Suppression Benchmark
             </h2>
           </div>
-          <p className="text-xs text-zinc-400 mt-1 max-w-2xl font-sans">
-            Evaluates material flammability under standardized NASA exploration atmospheres and benchmarks suppression efficacy referencing NASA-STD-6001B.
+          <p className="text-xs text-zinc-400 mt-1 max-w-2xl font-sans leading-relaxed">
+            Evaluates material flammability under standardized exploration atmospheres and benchmarks suppression efficacy referencing NASA-STD-6001B.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 text-xs font-mono text-zinc-400">
-          <span className="w-2 h-2 rounded-full bg-emerald-500" />
-          <span>METHODOLOGY: NASA-STD-6001B</span>
+        <div className="flex items-center gap-2 text-xs font-sans text-zinc-400">
+          <span className="w-2 h-2 rounded-full bg-emerald-400" />
+          <span>NASA-STD-6001B methodology</span>
         </div>
       </div>
 
       {/* Preset Selector Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {missionPresets.map(preset => {
           const isSelected = preset.id === selectedPresetId;
           return (
             <button
               key={preset.id}
               onClick={() => handleSelectPreset(preset)}
-              className={`p-3 rounded text-left transition-all border ${
+              className={`p-4 rounded-xl text-left transition-all border ${
                 isSelected
                   ? 'bg-[#18181B] border-[#F97316] text-zinc-100 shadow-sm'
-                  : 'bg-[#111114] border-[#27272A] text-zinc-400 hover:border-zinc-500'
+                  : 'bg-[#0E0E12] border-zinc-800/70 text-zinc-400 hover:border-zinc-700'
               }`}
             >
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[11px] font-mono font-semibold uppercase text-zinc-200">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-sans font-medium text-zinc-200">
                   {preset.shortLabel}
                 </span>
-                <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded border ${
+                <span className={`text-[10px] font-sans px-2 py-0.5 rounded-full border ${
                   preset.riskFactor === 'Critical'
                     ? 'bg-red-500/10 border-red-500/30 text-red-400'
                     : preset.riskFactor === 'High'
@@ -241,7 +241,7 @@ export const RiskMatrix: React.FC = () => {
                 </span>
               </div>
               <div className="font-mono text-xs text-zinc-300 flex items-center gap-2 tabular-nums">
-                <span className="text-[#F97316] font-bold">{preset.oxygenPercent}% O₂</span>
+                <span className="text-[#F97316] font-semibold">{preset.oxygenPercent}% O₂</span>
                 <span>•</span>
                 <span>{preset.pressureKpa} kPa</span>
                 <span>•</span>
@@ -253,14 +253,14 @@ export const RiskMatrix: React.FC = () => {
       </div>
 
       {/* Atmospheric Tuning Sliders */}
-      <div className="bg-[#111114] border border-[#27272A] rounded p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-1.5">
-          <div className="flex items-center justify-between text-xs font-mono">
-            <span className="text-zinc-400 flex items-center gap-1.5">
+      <div className="bg-[#0E0E12] border border-zinc-800/60 rounded-xl p-5 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <div className="flex items-center justify-between text-xs font-sans font-medium">
+            <span className="text-zinc-300 flex items-center gap-1.5">
               <Gauge className="w-3.5 h-3.5 text-[#F97316]" />
-              <span>OXYGEN CONCENTRATION:</span>
+              <span>Oxygen concentration</span>
             </span>
-            <span className="text-zinc-100 font-bold tabular-nums">{o2Percent.toFixed(1)}% O₂</span>
+            <span className="text-zinc-100 font-mono font-semibold tabular-nums">{o2Percent.toFixed(1)}% O₂</span>
           </div>
           <input
             type="range"
@@ -269,22 +269,22 @@ export const RiskMatrix: React.FC = () => {
             step="0.5"
             value={o2Percent}
             onChange={(e) => setO2Percent(Number(e.target.value))}
-            className="w-full accent-[#F97316] cursor-pointer bg-[#27272A] h-1.5 rounded"
+            className="w-full accent-[#F97316] cursor-pointer bg-zinc-800 h-1.5 rounded-lg"
           />
-          <div className="flex justify-between text-[10px] font-mono text-zinc-500">
-            <span>16% (Extinction Limit)</span>
+          <div className="flex justify-between text-[10px] font-sans text-zinc-500">
+            <span>16% (Extinction limit)</span>
             <span>21% (Nominal)</span>
-            <span className="text-[#F97316]">34% (Artemis Baseline)</span>
+            <span className="text-[#F97316]">34% (Artemis baseline)</span>
           </div>
         </div>
 
-        <div className="space-y-1.5">
-          <div className="flex items-center justify-between text-xs font-mono">
-            <span className="text-zinc-400 flex items-center gap-1.5">
+        <div className="space-y-2">
+          <div className="flex items-center justify-between text-xs font-sans font-medium">
+            <span className="text-zinc-300 flex items-center gap-1.5">
               <Activity className="w-3.5 h-3.5 text-[#3B82F6]" />
-              <span>CABIN TOTAL PRESSURE:</span>
+              <span>Cabin total pressure</span>
             </span>
-            <span className="text-zinc-100 font-bold tabular-nums">{pressureKpa.toFixed(1)} kPa</span>
+            <span className="text-zinc-100 font-mono font-semibold tabular-nums">{pressureKpa.toFixed(1)} kPa</span>
           </div>
           <input
             type="range"
@@ -293,9 +293,9 @@ export const RiskMatrix: React.FC = () => {
             step="0.5"
             value={pressureKpa}
             onChange={(e) => setPressureKpa(Number(e.target.value))}
-            className="w-full accent-[#3B82F6] cursor-pointer bg-[#27272A] h-1.5 rounded"
+            className="w-full accent-[#3B82F6] cursor-pointer bg-zinc-800 h-1.5 rounded-lg"
           />
-          <div className="flex justify-between text-[10px] font-mono text-zinc-500">
+          <div className="flex justify-between text-[10px] font-sans text-zinc-500">
             <span className="text-[#3B82F6]">56.5 kPa (Artemis 8.2 psia)</span>
             <span>70.3 kPa (Orion)</span>
             <span>101.3 kPa (1 atm)</span>
@@ -304,30 +304,30 @@ export const RiskMatrix: React.FC = () => {
       </div>
 
       {/* Materials Flammability Table */}
-      <div className="bg-[#111114] border border-[#27272A] rounded overflow-hidden">
-        <div className="p-3 border-b border-[#27272A] flex items-center justify-between">
-          <span className="text-xs font-mono font-semibold text-zinc-200 uppercase tracking-wider">
+      <div className="bg-[#0E0E12] border border-zinc-800/60 rounded-xl overflow-hidden shadow-sm">
+        <div className="p-4 border-b border-zinc-800/70 flex items-center justify-between">
+          <span className="text-xs font-sans font-semibold text-zinc-200 uppercase tracking-wider">
             NASA-STD-6001B Material Flammability Assessment
           </span>
-          <span className="text-[11px] font-mono text-zinc-400">
-            Current Atmosphere: <strong className="text-zinc-200">{o2Percent}% O₂ / {pressureKpa} kPa</strong>
+          <span className="text-xs font-sans text-zinc-400">
+            Current atmosphere: <strong className="text-zinc-200 font-mono tabular-nums">{o2Percent}% O₂ / {pressureKpa} kPa</strong>
           </span>
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs font-mono">
-            <thead className="bg-[#09090B] text-zinc-400 border-b border-[#27272A] text-[11px]">
+          <table className="w-full text-left text-xs font-sans">
+            <thead className="bg-[#09090B] text-zinc-400 border-b border-zinc-800/70 text-xs">
               <tr>
-                <th className="py-2.5 px-3">MATERIAL NAME</th>
-                <th className="py-2.5 px-3">CATEGORY</th>
-                <th className="py-2.5 px-3">PREDICTED SPREAD</th>
-                <th className="py-2.5 px-3">FLAMMABILITY INDEX</th>
-                <th className="py-2.5 px-3">RISK LEVEL</th>
-                <th className="py-2.5 px-3">STD-6001 STATUS</th>
-                <th className="py-2.5 px-3 text-right">ACTION</th>
+                <th className="py-3 px-4 font-medium">Material</th>
+                <th className="py-3 px-4 font-medium">Category</th>
+                <th className="py-3 px-4 font-medium">Predicted spread</th>
+                <th className="py-3 px-4 font-medium">Flammability index</th>
+                <th className="py-3 px-4 font-medium">Risk level</th>
+                <th className="py-3 px-4 font-medium">STD-6001 status</th>
+                <th className="py-3 px-4 text-right font-medium">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#1C1C21] text-zinc-300">
+            <tbody className="divide-y divide-zinc-800/40 text-zinc-300">
               {evaluatedMaterials.map(mat => {
                 const isSelected = mat.id === selectedMaterialId;
                 return (
@@ -335,20 +335,20 @@ export const RiskMatrix: React.FC = () => {
                     key={mat.id}
                     onClick={() => setSelectedMaterialId(mat.id)}
                     className={`cursor-pointer transition-colors ${
-                      isSelected ? 'bg-[#18181B] text-zinc-100' : 'hover:bg-[#141418]'
+                      isSelected ? 'bg-[#18181B] text-zinc-100' : 'hover:bg-[#121216]'
                     }`}
                   >
-                    <td className="py-2.5 px-3 font-semibold text-zinc-100 flex items-center gap-2">
+                    <td className="py-3 px-4 font-medium text-zinc-100 flex items-center gap-2">
                       <Flame className={`w-3.5 h-3.5 ${isSelected ? 'text-[#F97316]' : 'text-zinc-500'}`} />
                       <span>{mat.name}</span>
                     </td>
-                    <td className="py-2.5 px-3 text-zinc-400 text-[11px]">{mat.category}</td>
-                    <td className="py-2.5 px-3 font-bold tabular-nums">
+                    <td className="py-3 px-4 text-zinc-400 text-xs">{mat.category}</td>
+                    <td className="py-3 px-4 font-mono font-semibold tabular-nums text-zinc-200">
                       {mat.flameSpreadRatePredicted.toFixed(2)} mm/s
                     </td>
-                    <td className="py-2.5 px-3 tabular-nums">
+                    <td className="py-3 px-4 font-mono tabular-nums">
                       <div className="flex items-center gap-2">
-                        <div className="w-16 h-1.5 bg-[#27272A] rounded overflow-hidden">
+                        <div className="w-16 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
                           <div
                             className={`h-full ${
                               mat.flammabilityIndex >= 70 ? 'bg-red-500' : mat.flammabilityIndex >= 45 ? 'bg-[#F97316]' : 'bg-emerald-500'
@@ -356,11 +356,11 @@ export const RiskMatrix: React.FC = () => {
                             style={{ width: `${mat.flammabilityIndex}%` }}
                           />
                         </div>
-                        <span className="text-[11px] text-zinc-400">{mat.flammabilityIndex}</span>
+                        <span className="text-xs text-zinc-400">{mat.flammabilityIndex}</span>
                       </div>
                     </td>
-                    <td className="py-2.5 px-3">
-                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                    <td className="py-3 px-4">
+                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-sans font-medium ${
                         mat.riskLevel === 'CRITICAL'
                           ? 'bg-red-500/10 text-red-400 border border-red-500/30'
                           : mat.riskLevel === 'HIGH'
@@ -370,15 +370,15 @@ export const RiskMatrix: React.FC = () => {
                         {mat.riskLevel}
                       </span>
                     </td>
-                    <td className="py-2.5 px-3 text-[11px]">
+                    <td className="py-3 px-4 text-xs font-sans">
                       <span className={mat.std6001Status.startsWith('Pass') ? 'text-emerald-400' : mat.std6001Status.startsWith('Fail') ? 'text-red-400' : 'text-[#F97316]'}>
                         {mat.std6001Status}
                       </span>
                     </td>
-                    <td className="py-2.5 px-3 text-right">
+                    <td className="py-3 px-4 text-right">
                       <button
-                        className={`px-2 py-1 rounded text-[11px] transition-colors ${
-                          isSelected ? 'bg-[#F97316] text-white font-semibold' : 'bg-[#1C1C21] text-zinc-400 hover:text-zinc-200'
+                        className={`px-2.5 py-1 rounded-md text-xs font-sans transition-colors ${
+                          isSelected ? 'bg-[#F97316] text-white font-medium' : 'bg-[#18181B] text-zinc-400 hover:text-zinc-200'
                         }`}
                       >
                         Inspect
@@ -393,71 +393,71 @@ export const RiskMatrix: React.FC = () => {
       </div>
 
       {/* Selected Material Deep-Dive & Suppression Benchmark */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: Material Dossier */}
-        <div className="bg-[#111114] border border-[#27272A] rounded p-4 space-y-3 font-mono text-xs">
-          <div className="flex items-center justify-between pb-2 border-b border-[#27272A]">
-            <span className="font-semibold text-zinc-200 uppercase flex items-center gap-1.5">
+        <div className="bg-[#0E0E12] border border-zinc-800/60 rounded-xl p-5 space-y-4 font-sans text-xs">
+          <div className="flex items-center justify-between pb-3 border-b border-zinc-800/70">
+            <span className="font-semibold text-zinc-200 text-xs uppercase tracking-wider flex items-center gap-1.5">
               <ShieldAlert className="w-3.5 h-3.5 text-[#F97316]" />
               Engineering Hazard Dossier: {selectedMaterial.name}
             </span>
-            <span className="text-[10px] text-zinc-500">MOC: {selectedMaterial.baseMoc}% O₂</span>
+            <span className="text-xs font-mono text-zinc-400">MOC: <span className="font-semibold text-zinc-200">{selectedMaterial.baseMoc}% O₂</span></span>
           </div>
 
           <p className="text-zinc-300 font-sans leading-relaxed text-xs">
             {rawSelectedMaterial.description}
           </p>
 
-          <div className="grid grid-cols-2 gap-2 pt-2 border-t border-[#1C1C21] text-[11px]">
+          <div className="grid grid-cols-2 gap-4 pt-2 border-t border-zinc-800/40 text-xs">
             <div>
-              <span className="text-zinc-500 block">TOXIC OFFGASSING:</span>
-              <span className="text-red-400 font-semibold">{selectedMaterial.toxicByproducts}</span>
+              <span className="text-zinc-400 font-medium block mb-1">Toxic offgassing</span>
+              <span className="text-red-400 font-medium">{selectedMaterial.toxicByproducts}</span>
             </div>
             <div>
-              <span className="text-zinc-500 block">SOOT PROPENSITY:</span>
-              <span className="text-amber-400 font-semibold">{selectedMaterial.sootTendency}</span>
+              <span className="text-zinc-400 font-medium block mb-1">Soot propensity</span>
+              <span className="text-amber-400 font-medium">{selectedMaterial.sootTendency}</span>
             </div>
           </div>
 
-          <div className="p-2.5 bg-[#18181B] border border-[#27272A] rounded">
-            <span className="text-zinc-400 text-[10px] block mb-1">MANDATED MITIGATION PROTOCOL:</span>
-            <span className="text-zinc-200 text-xs font-sans leading-snug">
+          <div className="p-3 bg-[#18181B] border border-zinc-800/70 rounded-lg">
+            <span className="text-zinc-400 text-[10px] uppercase tracking-wider font-semibold block mb-1">Mandated Mitigation Protocol</span>
+            <span className="text-zinc-200 text-xs font-sans leading-relaxed">
               {selectedMaterial.mitigationProtocol}
             </span>
           </div>
         </div>
 
         {/* Right: Fine Water Mist vs CO2 Benchmark */}
-        <div className="bg-[#111114] border border-[#27272A] rounded p-4 space-y-3 font-mono text-xs">
-          <div className="flex items-center justify-between pb-2 border-b border-[#27272A]">
-            <span className="font-semibold text-zinc-200 uppercase flex items-center gap-1.5">
+        <div className="bg-[#0E0E12] border border-zinc-800/60 rounded-xl p-5 space-y-4 font-sans text-xs">
+          <div className="flex items-center justify-between pb-3 border-b border-zinc-800/70">
+            <span className="font-semibold text-zinc-200 text-xs uppercase tracking-wider flex items-center gap-1.5">
               <Droplets className="w-3.5 h-3.5 text-[#3B82F6]" />
               Suppression Benchmark: Water Mist vs. CO₂
             </span>
-            <span className="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">
-              2.26 MJ/kg LATENT HEAT QUENCHING
+            <span className="text-[10px] text-emerald-400 font-semibold bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20 font-sans">
+              2.26 MJ/kg Latent Heat Quenching
             </span>
           </div>
 
-          <div className="space-y-2 text-[11px] font-sans">
-            <div className="p-2.5 rounded bg-[#18181B] border border-[#27272A]">
-              <div className="text-emerald-400 font-mono font-semibold mb-1 flex items-center gap-1.5">
+          <div className="space-y-3 text-xs font-sans">
+            <div className="p-3 rounded-lg bg-[#18181B] border border-zinc-800/70">
+              <div className="text-emerald-400 font-sans font-semibold mb-1.5 flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 NASA SoFIE Fine Water Mist (Recommended)
               </div>
-              <ul className="text-zinc-300 space-y-1 list-disc list-inside">
+              <ul className="text-zinc-300 space-y-1.5 list-disc list-inside leading-relaxed">
                 <li><strong className="text-zinc-100">Zero Gravity Settling:</strong> Sub-millimeter droplets remain suspended in convective air, achieving 100% phase-change vaporization inside the flame envelope.</li>
                 <li><strong className="text-zinc-100">2.26 MJ/kg Heat Extraction:</strong> High latent heat of vaporization rapidly quenches reaction temperatures below the pyrolysis threshold.</li>
                 <li><strong className="text-zinc-100">ECLSS Closed-Loop Recovery:</strong> Vaporized mist is reclaimed by condensing heat exchangers, producing potable water rather than depleting cabin oxygen or contaminating filters.</li>
               </ul>
             </div>
 
-            <div className="p-2.5 rounded bg-[#18181B] border border-[#27272A]">
-              <div className="text-red-400 font-mono font-semibold mb-1 flex items-center gap-1.5">
+            <div className="p-3 rounded-lg bg-[#18181B] border border-zinc-800/70">
+              <div className="text-red-400 font-sans font-semibold mb-1.5 flex items-center gap-1.5">
                 <XCircle className="w-3.5 h-3.5" />
                 Legacy Carbon Dioxide (CO₂) Flooding Hazards
               </div>
-              <ul className="text-zinc-400 space-y-1 list-disc list-inside">
+              <ul className="text-zinc-400 space-y-1.5 list-disc list-inside leading-relaxed">
                 <li>Induces rapid cabin hypercapnia (&gt;4% CO₂), requiring crew to immediately don emergency breathing masks.</li>
                 <li>Exhausts consumable LiOH / CDRA scrubbing canisters, compromising ECLSS duration.</li>
                 <li>High-velocity discharge jet risks dispersing molten droplets across microgravity bays.</li>
