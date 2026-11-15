@@ -244,7 +244,7 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Universal Multi-Provider AI Modal — strict z-50 in hierarchy */}
       {isAiModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/70 backdrop-blur-sm animate-fadeIn"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-sm animate-fadeIn"
           onClick={(e) => {
             if (e.target === e.currentTarget) setIsAiModalOpen(false);
           }}

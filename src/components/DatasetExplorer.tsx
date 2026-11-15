@@ -297,10 +297,10 @@ export const DatasetExplorer: React.FC<DatasetExplorerProps> = ({
         </div>
       </div>
 
-      {/* Slide-Over Engineering Dossier Drawer — strict z-40 in hierarchy */}
+      {/* Slide-Over Engineering Dossier Drawer — strict z-50 in hierarchy */}
       {activeExp && (
         <div
-          className="fixed inset-0 z-40 flex justify-end bg-black/70 backdrop-blur-sm animate-fadeIn"
+          className="fixed inset-0 z-50 flex justify-end bg-black/75 backdrop-blur-sm animate-fadeIn"
           onClick={(e) => {
             if (e.target === e.currentTarget) setActiveExp(null);
           }}
