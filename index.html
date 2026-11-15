@@ -2,15 +2,21 @@
 <html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>" />
+    <!-- Flame + orbit SVG favicon (inline, no external dependency) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%2309090B' stroke='%23F97316' stroke-width='5'/><text y='.9em' font-size='58' x='20' fill='%23F97316'>🔥</text></svg>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IGNIS-0G | NASA Microgravity Combustion & Spacecraft Fire Safety Intelligence</title>
+    <title>IGNIS-0G — Microgravity Combustion &amp; Spacecraft Fire Safety Intelligence</title>
+    <meta name="description" content="Real-time 60FPS microgravity combustion physics simulator grounded in 17 verified NASA PSI flight experiments across Saffire, FLEX, BASS, ACME, SoFIE, BRE, and SLICE programs. Built for the NASA Space Apps Challenge." />
+    <!-- Open Graph -->
+    <meta property="og:title" content="IGNIS-0G — Microgravity Combustion &amp; Spacecraft Fire Safety Intelligence" />
+    <meta property="og:description" content="Real-time combustion physics, risk matrices, and AI-grounded research across 17 NASA PSI flight experiments. ISS · Artemis · Mars." />
+    <meta property="og:type" content="website" />
     <!-- Google Fonts: Space Grotesk, Inter, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-[#060B14] text-slate-100 antialiased selection:bg-sky-500/30 selection:text-sky-300 min-h-screen">
+  <body class="bg-[#060B14] text-slate-100 antialiased selection:bg-sky-500/30 selection:text-sky-300 min-h-screen overflow-x-hidden">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

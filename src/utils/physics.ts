@@ -125,15 +125,19 @@ export function calculateCombustionPhysics({
     coPpmEmitted = 20;
   }
 
+  // Guard against NaN / Infinity for all computed dimensionless numbers
+  const safeNum = (v: number, fallback: number = 0): number =>
+    Number.isFinite(v) ? v : fallback;
+
   return {
-    buoyancyForceN: Number(buoyancyForceN.toExponential(3)),
-    grashofNumber: Math.round(grashofNumber),
-    froudeNumber: Number(froudeNumber.toFixed(2)),
-    reynoldsNumber: Math.round(reynoldsNumber),
-    flameTempK: T_f,
-    radiantLossFraction: Number((radiantLossFraction * 100).toFixed(1)),
+    buoyancyForceN: Number(safeNum(buoyancyForceN).toExponential(3)),
+    grashofNumber: Math.round(safeNum(grashofNumber)),
+    froudeNumber: Number(safeNum(froudeNumber).toFixed(2)),
+    reynoldsNumber: Math.round(safeNum(reynoldsNumber)),
+    flameTempK: safeNum(T_f, 600),
+    radiantLossFraction: Number(safeNum(radiantLossFraction * 100).toFixed(1)),
     flameStatus,
     extinctionCountdown,
-    coPpmEmitted
+    coPpmEmitted: safeNum(coPpmEmitted, 0)
   };
 }

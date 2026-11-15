@@ -178,28 +178,28 @@ export const InsightGraph: React.FC<InsightGraphProps> = ({
                   name="0.0g Microgravity"
                   data={zeroGData}
                   fill="#3B82F6"
-                  onClick={(e: any) => handleInspect && handleInspect(e)}
+                  onClick={(data: any) => handleInspect && data?.payload && handleInspect(data.payload as NASAExperiment)}
                   cursor="pointer"
                 />
                 <Scatter
                   name="0.16g Lunar"
                   data={lunarData}
                   fill="#818CF8"
-                  onClick={(e: any) => handleInspect && handleInspect(e)}
+                  onClick={(data: any) => handleInspect && data?.payload && handleInspect(data.payload as NASAExperiment)}
                   cursor="pointer"
                 />
                 <Scatter
                   name="0.38g Martian"
                   data={marsData}
                   fill="#F97316"
-                  onClick={(e: any) => handleInspect && handleInspect(e)}
+                  onClick={(data: any) => handleInspect && data?.payload && handleInspect(data.payload as NASAExperiment)}
                   cursor="pointer"
                 />
                 <Scatter
                   name="1.0g Terrestrial"
                   data={earthData}
                   fill="#FBBF24"
-                  onClick={(e: any) => handleInspect && handleInspect(e)}
+                  onClick={(data: any) => handleInspect && data?.payload && handleInspect(data.payload as NASAExperiment)}
                   cursor="pointer"
                 />
               </ScatterChart>

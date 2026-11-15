@@ -72,13 +72,18 @@ This absence of buoyant flow introduces critical hazards for human spaceflight:
   * *Mars Surface Habitat (Simulated):* $26.0\%\text{ }O_2$, $70.3\text{ kPa}$, $0.38\text{g}$
 * **Material Flammability Gauges:** Evaluates `Nomex Flight Suit Fabric`, `PMMA Cast Acrylic Window`, `XLPE Copper Wiring`, `SIBAL Cotton-Fiberglass`, and `Polyurethane Foam`.
 * **Suppression Benchmark:** Evaluates **NASA SoFIE Fine Water Mist** vs. **Legacy $CO_2$ Flooding**:
-  * Fine Water Mist achieves **4.8x higher thermal extraction efficiency** with zero droplet settling.
-  * 100% phase-change vaporization extracts **2.26 MJ/kg** latent heat.
+  * Fine Water Mist stays suspended in microgravity (zero droplet settling), extracting **2.26 MJ/kg** latent heat via 100% phase-change vaporization.
   * Reclaimed by ECLSS condensing heat exchangers into potable water, avoiding the acute hypercapnia (>4% $CO_2$) caused by gas flood extinguishers.
 
 ### 3. Hybrid AI Research Analyst (`AiSynthesizer.tsx`)
-* **100% Offline Out-of-the-Box Deterministic RAG Engine:** Pre-indexed over all 17 verified NASA PSI records.
-* **Optional Google Gemini Live Grounding:** Connect an ephemeral Gemini API key (stored in RAM only; cleared on tab close) for extended generative reasoning.
+* **100% Offline Out-of-the-Box Deterministic RAG Engine:** Pre-indexed over all 17 verified NASA PSI records. Zero API key required.
+* **5 AI Provider Options** (all credentials RAM-only, never persisted):
+  1. **Offline TF-IDF Analyst** (default) — Deterministic semantic engine, works with zero connectivity.
+  2. **Google Gemini** (`gemini-2.0-flash` or custom model name) — via Google AI Studio API key.
+  3. **OpenAI** (`gpt-4o-mini` / `gpt-4o`) — via OpenAI Platform API key.
+  4. **Anthropic Claude** (`claude-3-5-sonnet-latest`) — via Anthropic Console API key.
+  5. **OpenAI-Compatible Custom Endpoint** — Supports Groq, OpenRouter, DeepSeek, Mistral, or local Ollama.
+* **Automatic graceful fallback** to Offline TF-IDF if an external API call fails or times out.
 * **One-Click Technical Prompt Chips:**
   * *"Compare Methane vs. Hydrogen fire hazards in 0g"*
   * *"Explain the Draft Paradox in BASS experiments"*
@@ -141,7 +146,7 @@ IGNIS-0G is grounded in peer-reviewed data from 17 verified experiments curated 
 * **Motion & Transitions:** Framer Motion (`<AnimatePresence>`)
 * **Interactive Charts:** Recharts (`ScatterChart`, `ComposedChart`, `Area`, `Line`, `ReferenceArea`)
 * **Icons:** Lucide React
-* **AI Grounding:** Hybrid architecture (100% offline deterministic RAG + ephemeral Google Gemini REST API)
+* **AI Grounding:** Universal multi-provider hybrid architecture (Offline TF-IDF deterministic RAG + Gemini / OpenAI / Anthropic Claude / Custom OpenAI-compatible endpoint — all RAM-only, zero persistence)
 
 ---
 

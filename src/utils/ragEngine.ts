@@ -87,8 +87,28 @@ const SUPERLATIVES: Array<[RegExp, string, (e: NASAExperiment) => number, string
   [/\b(sootiest|most soot|highest soot)\b/, 'Highest soot volume fraction', e => e.sootPpm, 'ppm', true],
 ];
 
+/** Sanitize and validate a user query before processing */
+function sanitizeQuery(raw: string): string {
+  // Trim whitespace and enforce a 2000-char hard cap
+  let q = raw.trim().slice(0, 2000);
+  // Strip HTML special chars to prevent XSS if output is ever reflected verbatim
+  q = q.replace(/&/g, '').replace(/</g, '').replace(/>/g, '').replace(/"/g, '').replace(/'/g, '');
+  return q;
+}
+
 export function queryDeterministicNASA(query: string): GroundedRAGResponse {
-  const q = query.toLowerCase();
+  const sanitized = sanitizeQuery(query);
+  // Empty query after sanitization → return a helpful deterministic fallback
+  if (!sanitized) {
+    return {
+      answerText: '### Ask a Question\nEnter a combustion science question (e.g. "What is the BASS Draft Paradox?" or "Compare Methane vs Hydrogen in 0g") to query the 17-record NASA PSI corpus.',
+      citations: [],
+      confidenceScore: 0,
+      providerUsed: 'offline',
+      usedFallback: false,
+    };
+  }
+  const q = sanitized.toLowerCase();
   const ranked = rank(q);
   const top = ranked[0];
   const toCitations = (list: NASAExperiment[]) => list.map(e => ({ id: e.id, psiRecord: e.psiRecord, program: e.program, material: e.material, takeaway: e.safetyRecommendation, experiment: e }));
@@ -165,7 +185,9 @@ export async function queryHybridAI(
   query: string,
   configOrKey?: AIProviderConfig | string
 ): Promise<GroundedRAGResponse> {
-  const local = queryDeterministicNASA(query);
+  // Sanitize query before any processing — cap at 2000 chars, strip HTML special chars
+  const safeQuery = sanitizeQuery(query);
+  const local = queryDeterministicNASA(safeQuery);
 
   // Normalize configuration input
   let config: AIProviderConfig;
@@ -221,7 +243,7 @@ export async function queryHybridAI(
           'x-goog-api-key': config.apiKey.trim()
         },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: `${NASA_SYSTEM_PROMPT}\n\nCORPUS:\n${JSON.stringify(corpus)}\n\nQUESTION: ${query}` }] }],
+          contents: [{ parts: [{ text: `${NASA_SYSTEM_PROMPT}\n\nCORPUS:\n${JSON.stringify(corpus)}\n\nQUESTION: ${safeQuery}` }] }],
           generationConfig: { temperature: 0.1, maxOutputTokens: 1200 },
         }),
       });
@@ -261,7 +283,7 @@ export async function queryHybridAI(
           model,
           messages: [
             { role: 'system', content: NASA_SYSTEM_PROMPT },
-            { role: 'user', content: `CORPUS:\n${JSON.stringify(corpus)}\n\nQUESTION: ${query}` }
+            { role: 'user', content: `CORPUS:\n${JSON.stringify(corpus)}\n\nQUESTION: ${safeQuery}` }
           ],
           temperature: 0.1,
           max_tokens: 1200
@@ -306,7 +328,7 @@ export async function queryHybridAI(
           max_tokens: 1200,
           system: NASA_SYSTEM_PROMPT,
           messages: [
-            { role: 'user', content: `CORPUS:\n${JSON.stringify(corpus)}\n\nQUESTION: ${query}` }
+            { role: 'user', content: `CORPUS:\n${JSON.stringify(corpus)}\n\nQUESTION: ${safeQuery}` }
           ]
         })
       });
@@ -352,7 +374,7 @@ export async function queryHybridAI(
           model,
           messages: [
             { role: 'system', content: NASA_SYSTEM_PROMPT },
-            { role: 'user', content: `CORPUS:\n${JSON.stringify(corpus)}\n\nQUESTION: ${query}` }
+            { role: 'user', content: `CORPUS:\n${JSON.stringify(corpus)}\n\nQUESTION: ${safeQuery}` }
           ],
           temperature: 0.1,
           max_tokens: 1200

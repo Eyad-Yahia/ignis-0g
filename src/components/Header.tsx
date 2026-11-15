@@ -65,6 +65,16 @@ export const Header: React.FC<HeaderProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isAiModalOpen, setIsAiModalOpen]);
 
+  // Body scroll lock while modal is open
+  useEffect(() => {
+    if (isAiModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isAiModalOpen]);
+
   const navItems = [
     { id: 'gravity', label: 'Simulator', icon: Scale },
     { id: 'risk', label: 'Risk Matrix', icon: ShieldAlert },
@@ -463,7 +473,7 @@ export const Header: React.FC<HeaderProps> = ({
                       <a
                         href="https://aistudio.google.com/app/apikey"
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         className="text-[#3B82F6] hover:underline text-[10px] flex items-center gap-0.5"
                       >
                         Google AI Studio <ExternalLink className="w-2.5 h-2.5" />
@@ -473,7 +483,7 @@ export const Header: React.FC<HeaderProps> = ({
                       <a
                         href="https://platform.openai.com/api-keys"
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         className="text-emerald-400 hover:underline text-[10px] flex items-center gap-0.5"
                       >
                         OpenAI Platform <ExternalLink className="w-2.5 h-2.5" />
@@ -483,7 +493,7 @@ export const Header: React.FC<HeaderProps> = ({
                       <a
                         href="https://console.anthropic.com/settings/keys"
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         className="text-amber-400 hover:underline text-[10px] flex items-center gap-0.5"
                       >
                         Anthropic Console <ExternalLink className="w-2.5 h-2.5" />

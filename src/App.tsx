@@ -47,7 +47,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090B] text-zinc-100 flex flex-col font-sans selection:bg-[#F97316]/20 selection:text-[#F97316]">
+    <div className="min-h-screen bg-[#09090B] text-zinc-100 flex flex-col font-sans selection:bg-[#F97316]/20 selection:text-[#F97316] overflow-x-hidden">
       {/* 48px Header — z-30 */}
       <Header
         activeTab={activeTab}
