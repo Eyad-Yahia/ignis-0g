@@ -65,16 +65,6 @@ export const Header: React.FC<HeaderProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isAiModalOpen, setIsAiModalOpen]);
 
-  // Body scroll lock while modal is open
-  useEffect(() => {
-    if (isAiModalOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => { document.body.style.overflow = ''; };
-  }, [isAiModalOpen]);
-
   const navItems = [
     { id: 'gravity', label: 'Simulator', icon: Scale },
     { id: 'risk', label: 'Risk Matrix', icon: ShieldAlert },
