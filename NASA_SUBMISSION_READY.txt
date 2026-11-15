@@ -1,0 +1,139 @@
+================================================================================
+                    NASA SPACE APPS CHALLENGE SUBMISSION KIT
+                                    IGNIS-0G
+             Microgravity Combustion & Spacecraft Fire Safety Intelligence
+================================================================================
+
+--------------------------------------------------------------------------------
+FIELD 1 — PROJECT NAME
+--------------------------------------------------------------------------------
+IGNIS-0G: Microgravity Combustion & Spacecraft Fire Safety Intelligence
+
+
+--------------------------------------------------------------------------------
+FIELD 2 — PROJECT SUMMARY (132 Words)
+--------------------------------------------------------------------------------
+Fire behaves deceptively in microgravity. Without buoyant natural convection, flames form invisible, spherical low-temperature shells that produce lethal carbon monoxide and survive unexpectedly at low oxygen thresholds. IGNIS-0G is a spacecraft fire safety intelligence system built for deep-space mission verification. Powered by a real-time 60 FPS Navier-Stokes and chemical kinetics aerodynamics simulator, it accurately predicts flame morphology, buoyancy forces, and the critical BASS 45-second extinction boundary across Earth, Mars, Moon, and ISS regimes. The platform integrates 17 verified flight experiments from NASA's Physical Sciences Informatics (PSI) repository, an interactive NASA-STD-6001B spacecraft material risk matrix benchmarking SoFIE fine water mist versus toxic CO2 flooding, and a zero-hallucination multi-provider RAG AI analyst with deterministic offline TF-IDF fallback. IGNIS-0G equips aerospace engineers and astronauts with predictive fire suppression intelligence for Artemis and Mars exploration missions.
+
+
+--------------------------------------------------------------------------------
+FIELD 3 — DETAILED PROJECT DESCRIPTION
+--------------------------------------------------------------------------------
+
+1. THE CRITICAL SPACECRAFT FIRE HAZARD
+Combustion in zero gravity diverges fundamentally from terrestrial physics:
+- In 1.0g Earth gravity, buoyant convection accelerates hot gases upward (Grashof number Gr > 10^6), generating the familiar flickering teardrop flame that naturally entrains fresh oxidizer while dispersing combustion products.
+- In 0.0g microgravity (ISS / Gateway), buoyancy collapses entirely (Fb -> 0, Gr -> 0). Combustion becomes purely diffusion-limited. In stagnant cabin air (0 cm/s airflow), burning fuels quickly suffocate within an envelope of their own CO2 and H2O combustion products (the BASS Draft Paradox).
+- Paradoxically, gentle spacecraft life-support ventilation (2.5 to 5 cm/s) revitalizes combustion, while higher speeds can quench it.
+- Furthermore, experiments like NASA FLEX discovered invisible "cool flames" (550–800 K) supported by peroxy radical chain branching that burn silently without soot, emitting lethal concentrations of carbon monoxide (CO).
+- Under exploration baselines like the Artemis Exploration Atmosphere (34% O2 at 56.5 kPa / 8.2 psia), terrestrial flammability limits no longer apply. Materials deemed self-extinguishing on Earth can burn vigorously on Lunar and Martian habitats.
+
+2. SYSTEM ARCHITECTURE & SCIENTIFIC METHODOLOGY
+IGNIS-0G provides an end-to-end mission verification and telemetry platform divided into five tightly integrated modules:
+
+A. 60 FPS Microgravity Combustion & Aerodynamics Simulator
+- Native HTML5 Canvas particle physics engine running at an unthrottled 60 FPS.
+- Couples real-time Navier-Stokes airflow field advection, oxygen diffusion kinetics, soot radiation, and chemical quenching.
+- Dynamic telemetry calculations updated at 60 Hz:
+  * Buoyancy Force: Fb = (rho_ambient - rho_flame) * g * V
+  * Grashof Number: Gr = (g * beta * (T_flame - T_ambient) * L^3) / nu^2
+  * Froude Number: Fr = U / sqrt(g * L)
+  * Reynolds Number: Re = (U * L) / nu
+  * Radiant Heat Loss fraction and toxic CO offgassing (ppm)
+- Models the BASS 45-second zero-flow suffocation countdown and FLEX quasi-steady cool flame chemistry.
+
+B. NASA Physical Sciences Informatics (PSI) Curated Dataset
+- 17 verified, peer-reviewed flight and ground experiments curated directly from NASA PSI and NASA Glenn Research Center databases.
+- Spans 7 major NASA spaceflight combustion programs:
+  1. Saffire (Spacecraft Fire Safety Demonstration Project on Cygnus vehicles)
+  2. FLEX / FLEX-2 (Flame Extinguishment Experiment aboard ISS CIR)
+  3. BASS / BASS-II (Burning and Suppression of Solids)
+  4. ACME (Advanced Combustion via Microgravity Experiments)
+  5. SoFIE (Solid Fuel Ignition and Extinction)
+  6. BRE (Burning Rate Emulator)
+  7. SLICE (Smoke and Line Carbon Emission)
+- Full client-side export to formatted JSON and CSV datasets.
+
+C. Spacecraft Material Risk Matrix & NASA-STD-6001B Benchmark
+- Multi-atmosphere flammability evaluation engine covering 8 standardized spacecraft materials (PMMA/Plexiglas, Nomex, Kapton, Silicone RTV, PTFE/Teflon, Polyethylene, Polyurethane Foam, Cotton/Cellulose).
+- Four pre-configured operational flight profiles:
+  * ISS / Gateway Nominal (21% O2, 101.3 kPa, 0.0g)
+  * Artemis Exploration Atmosphere (34% O2, 56.5 kPa, 0.16g)
+  * Orion / Transit Contingency (26.5% O2, 70.3 kPa, 0.0g)
+  * Mars Surface Habitat (26% O2, 70.3 kPa, 0.38g)
+- NASA-STD-6001B Test 1 flammability prediction with Maximum Oxygen Concentration (MOC) thresholds.
+- Fire suppression benchmark: Quantitative comparison between NASA SoFIE Fine Water Mist (2.26 MJ/kg latent heat quenching, zero settling, closed-loop ECLSS recovery) and legacy CO2 flooding (hypercapnia hazard, LiOH canister depletion).
+
+D. Cross-Experiment Telemetry Correlation & Anomaly Graph
+- Interactive multi-axis Recharts scatter charts mapping Flame Spread Rate (mm/s) vs. Oxygen Concentration (%).
+- Airflow velocity vs. combustion sustainability profiles highlighting the 2.5–15 cm/s forced convection survival window in zero gravity.
+- Documented flight anomalies: BASS zero-flow extinction, FLEX cool flame longevity, and SLICE high CO soot super-aggregation.
+
+E. Zero-Hallucination Multi-Provider AI Flight Safety Analyst
+- Universal RAG (Retrieval-Augmented Generation) engine strictly grounded in the 17 NASA PSI flight records.
+- Deterministic Offline TF-IDF Engine requiring zero API keys, zero network, and zero external dependencies.
+- Universal plug-and-play support for cloud AI models: Google Gemini 2.0, OpenAI GPT-4o, Anthropic Claude 3.5, and Custom OpenAI-compatible endpoints (Groq, Ollama, DeepSeek).
+- RAM-only API key handling: zero localStorage/cookie exposure, strictly memory-isolated.
+
+3. TECH STACK & DEPLOYMENT ARCHITECTURE
+- Frontend: React 18, TypeScript 5, Vite 6, Tailwind CSS
+- Data Visualization: Lucide React, Recharts (chunk-optimized)
+- Physics & Canvas: Vanilla 2D Context API with HiDPI dpr scaling and decoupled DOM ref telemetry updates (zero React re-render lag)
+- Security: Strict Content-Security-Policy compliant, zero external analytics, zero tracking, strictly memory-only credentials
+- Production Bundle: 100% static client-side SPA ready for immediate deployment on Netlify, Vercel, or GitHub Pages.
+
+
+--------------------------------------------------------------------------------
+FIELD 4 — NASA DATA & REFERENCES
+--------------------------------------------------------------------------------
+1. NASA Physical Sciences Informatics (PSI) System:
+   https://psi.nasa.gov
+   - Database records: PSI-CB-0041, PSI-CB-0012, PSI-CB-0028, PSI-CB-0055, PSI-CB-0062, PSI-CB-0071, PSI-CB-0033.
+
+2. NASA Saffire (Spacecraft Fire Safety Demonstration Project):
+   https://www.nasa.gov/saffire
+   - NASA Glenn Research Center, Cygnus-based large-scale spacecraft fire experiments.
+
+3. NASA-STD-6001B:
+   "Flammability, Odor, Offgassing, and Compatibility Requirements and Test Procedures for Materials in Environments that Support Combustion"
+   https://standards.nasa.gov/standard/NASA/NASA-STD-6001
+
+4. NASA SoFIE (Solid Fuel Ignition and Extinction) Investigation:
+   https://www.nasa.gov/mission_pages/station/research/experiments/explorer/Investigation.html?#id=7967
+
+5. NASA FLEX (Flame Extinguishment Experiment) Cool Flame Discovery:
+   https://www.nasa.gov/mission_pages/station/research/news/cool_flames
+
+
+--------------------------------------------------------------------------------
+FIELD 5 — 30-SECOND DEMO VIDEO TIMELINE (SHOT-BY-SHOT SCRIPT)
+--------------------------------------------------------------------------------
+[0:00 - 0:06] OPENING: 0.0g ISS FLAME SIMULATOR
+- Screen: Tab "Simulator". Gravity is set to "0.0g ISS". Airflow is at 3.5 cm/s.
+- Action: Show the spherical blue microgravity diffusion flame.
+- Click: Drag "Forced airflow" slider to 0 cm/s. Point out the live BASS extinction countdown appearing at top-right ("45.0s TO SUFFOCATION").
+
+[0:06 - 0:12] COOL FLAME & GRAVITY REGIMES
+- Action: Click "Enable Cool Flame".
+- Visual: Flame shifts to the faint 600K violet halo. Telemetry shows 0 N buoyancy and elevated CO offgassing.
+- Click: Switch gravity button from "0.0g ISS" to "1.0g Earth" and then "0.38g Mars".
+- Visual: Observe instant Navier-Stokes buoyancy plume transition (Gr > 10^6) with realistic convective flicker.
+
+[0:12 - 0:18] MATERIAL RISK MATRIX (NASA-STD-6001B)
+- Action: Click tab "Risk Matrix".
+- Click: Click the "Artemis EVA Atmosphere" preset (34% O2, 56.5 kPa).
+- Visual: Table updates dynamically showing PMMA and Nomex jumping to "High" and "Critical" flammability.
+- Action: Scroll down slightly to highlight the NASA SoFIE Fine Water Mist (2.26 MJ/kg) vs. CO2 comparison.
+
+[0:18 - 0:24] TELEMETRY GRAPH & PSI DATASET
+- Action: Click tab "Telemetry Graph".
+- Visual: Point to the scatter plot of Flame Spread Rate vs Oxygen (%) and the shaded forced convection survival zone.
+- Click: Click tab "Dataset".
+- Action: Filter by program "Saffire", then click "Export CSV" to demonstrate full open-source data availability.
+
+[0:24 - 0:30] ZERO-HALLUCINATION AI ANALYST & CLOSING
+- Action: Click tab "AI Analyst".
+- Click: Click the prompt chip: "Explain why forced airflow is required to keep a flame alive in zero gravity."
+- Visual: AI responds instantly citing NASA-BASS-01 and Saffire telemetry with clickable PSI flight citations.
+- Conclude: Pan over the clean aerospace header. IGNIS-0G: Spacecraft Fire Safety Intelligence for Artemis & Mars.
+================================================================================

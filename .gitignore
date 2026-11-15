@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
+.env*
+*.bat
+audit-report.md
 
 # Editor directories and files
 .vscode/*

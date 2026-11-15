@@ -182,22 +182,17 @@ Every statement is cross-referenced with flight record IDs to eliminate hallucin
       {/* Module Overview Header — de-boxed & breathing */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2">
         <div>
-          <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-lg bg-[#18181B] border border-zinc-800 flex items-center justify-center text-[#F97316]">
-              <Bot className="w-4 h-4" />
-            </div>
-            <h2 className="text-base font-semibold font-sans text-zinc-100 tracking-tight">
-              AI Flight Safety Analyst
-            </h2>
-          </div>
+          <h2 className="text-base font-semibold font-sans text-zinc-100 tracking-tight">
+            AI Flight Safety Analyst
+          </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-2xl font-sans leading-relaxed">
             Universal RAG synthesis engine grounded in 17 verified NASA PSI microgravity flight experiments. Zero hallucination tolerance.
           </p>
         </div>
 
         <div className="flex items-center gap-2.5">
-          <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0E0E12] border border-zinc-800 text-emerald-400 text-xs font-sans font-medium">
-            <ShieldCheck className="w-3.5 h-3.5" />
+          <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0E0E12] border border-zinc-800 text-zinc-300 text-xs font-sans font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
             <span>Zero-hallucination RAG</span>
           </div>
 

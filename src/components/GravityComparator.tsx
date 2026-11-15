@@ -511,14 +511,9 @@ export const GravityComparator: React.FC = () => {
       {/* Module Header Section — de-boxed & breathing */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2">
         <div>
-          <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-lg bg-[#18181B] border border-zinc-800 flex items-center justify-center text-[#F97316]">
-              <Scale className="w-4 h-4" />
-            </div>
-            <h2 className="text-base font-semibold font-sans text-zinc-100 tracking-tight">
-              Microgravity Combustion & Aerodynamics Simulator
-            </h2>
-          </div>
+          <h2 className="text-base font-semibold font-sans text-zinc-100 tracking-tight">
+            Microgravity Combustion & Aerodynamics Simulator
+          </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-2xl font-sans leading-relaxed">
             Real-time Navier-Stokes and diffusion kinetics approximation across planetary regimes. Grounded in NASA PSI flight telemetry from Saffire, FLEX, and BASS.
           </p>
@@ -615,10 +610,7 @@ export const GravityComparator: React.FC = () => {
             {/* Airflow Velocity Slider */}
             <div className="space-y-2">
               <div className="flex items-center justify-between text-xs font-sans font-medium">
-                <span className="text-zinc-300 flex items-center gap-1.5">
-                  <Wind className="w-3.5 h-3.5 text-[#3B82F6]" />
-                  <span>Forced airflow</span>
-                </span>
+                <span className="text-zinc-300">Forced airflow</span>
                 <span className="text-zinc-100 font-mono font-semibold tabular-nums">{airflowCmSec.toFixed(1)} cm/s</span>
               </div>
               <input
@@ -640,10 +632,7 @@ export const GravityComparator: React.FC = () => {
             {/* Oxygen Fraction Slider */}
             <div className="space-y-2">
               <div className="flex items-center justify-between text-xs font-sans font-medium">
-                <span className="text-zinc-300 flex items-center gap-1.5">
-                  <Gauge className="w-3.5 h-3.5 text-[#F97316]" />
-                  <span>Oxygen fraction</span>
-                </span>
+                <span className="text-zinc-300">Oxygen fraction</span>
                 <span className="text-zinc-100 font-mono font-semibold tabular-nums">{oxygenPercent.toFixed(1)}% O₂</span>
               </div>
               <input
@@ -669,12 +658,12 @@ export const GravityComparator: React.FC = () => {
           {/* Live Telemetry Inspector Panel (DOM text updated directly via refs) */}
           <div className="bg-[#0E0E12] border border-zinc-800/60 rounded-xl p-5 space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-zinc-800/70">
-              <span className="text-xs font-sans font-semibold text-zinc-200 uppercase tracking-wider flex items-center gap-1.5">
-                <Activity className="w-3.5 h-3.5 text-[#F97316]" />
+              <span className="text-xs font-sans font-semibold text-zinc-200 uppercase tracking-wider">
                 Telemetry Inspector
               </span>
-              <span className="text-[10px] font-sans font-medium text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
-                Live 60 FPS
+              <span className="text-[11px] font-sans text-zinc-400 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                60 FPS
               </span>
             </div>
 
@@ -688,7 +677,7 @@ export const GravityComparator: React.FC = () => {
 
               <div className="flex justify-between items-center py-1 border-b border-zinc-800/40">
                 <span className="text-zinc-400 font-sans">Buoyancy Force (Fb):</span>
-                <span ref={buoyancyRef} className="text-[#3B82F6] font-semibold font-mono tabular-nums">
+                <span ref={buoyancyRef} className="text-zinc-100 font-semibold font-mono tabular-nums">
                   {initialPhysics.buoyancyForceN.toExponential(2)} N
                 </span>
               </div>
@@ -716,7 +705,7 @@ export const GravityComparator: React.FC = () => {
 
               <div className="flex justify-between items-center py-1 border-b border-zinc-800/40">
                 <span className="text-zinc-400 font-sans">Radiant Heat Loss:</span>
-                <span ref={radiantRef} className="text-[#F97316] font-semibold font-mono tabular-nums">
+                <span ref={radiantRef} className="text-zinc-100 font-semibold font-mono tabular-nums">
                   {initialPhysics.radiantLossFraction}%
                 </span>
               </div>
@@ -743,8 +732,7 @@ export const GravityComparator: React.FC = () => {
 
           {/* NASA Scientific Context Note */}
           <div className="bg-[#0C0C0E] border border-zinc-800/40 rounded-xl p-4 space-y-2">
-            <div className="text-xs font-sans font-semibold text-zinc-300 flex items-center gap-1.5">
-              <Zap className="w-3.5 h-3.5 text-[#F97316]" />
+            <div className="text-xs font-sans font-semibold text-zinc-300">
               Physics Governing Principle
             </div>
             <p className="text-xs text-zinc-400 leading-relaxed font-sans">

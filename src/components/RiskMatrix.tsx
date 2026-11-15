@@ -193,14 +193,9 @@ export const RiskMatrix: React.FC = () => {
       {/* Module Header Section — de-boxed & breathing */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2">
         <div>
-          <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-lg bg-[#18181B] border border-zinc-800 flex items-center justify-center text-[#F97316]">
-              <ShieldAlert className="w-4 h-4" />
-            </div>
-            <h2 className="text-base font-semibold font-sans text-zinc-100 tracking-tight">
-              Spacecraft Material Risk Matrix & Suppression Benchmark
-            </h2>
-          </div>
+          <h2 className="text-base font-semibold font-sans text-zinc-100 tracking-tight">
+            Spacecraft Material Risk Matrix & Suppression Benchmark
+          </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-2xl font-sans leading-relaxed">
             Evaluates material flammability under standardized exploration atmospheres and benchmarks suppression efficacy referencing NASA-STD-6001B.
           </p>
@@ -256,10 +251,7 @@ export const RiskMatrix: React.FC = () => {
       <div className="bg-[#0E0E12] border border-zinc-800/60 rounded-xl p-5 grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
           <div className="flex items-center justify-between text-xs font-sans font-medium">
-            <span className="text-zinc-300 flex items-center gap-1.5">
-              <Gauge className="w-3.5 h-3.5 text-[#F97316]" />
-              <span>Oxygen concentration</span>
-            </span>
+            <span className="text-zinc-300">Oxygen concentration</span>
             <span className="text-zinc-100 font-mono font-semibold tabular-nums">{o2Percent.toFixed(1)}% O₂</span>
           </div>
           <input
@@ -280,10 +272,7 @@ export const RiskMatrix: React.FC = () => {
 
         <div className="space-y-2">
           <div className="flex items-center justify-between text-xs font-sans font-medium">
-            <span className="text-zinc-300 flex items-center gap-1.5">
-              <Activity className="w-3.5 h-3.5 text-[#3B82F6]" />
-              <span>Cabin total pressure</span>
-            </span>
+            <span className="text-zinc-300">Cabin total pressure</span>
             <span className="text-zinc-100 font-mono font-semibold tabular-nums">{pressureKpa.toFixed(1)} kPa</span>
           </div>
           <input
@@ -397,8 +386,7 @@ export const RiskMatrix: React.FC = () => {
         {/* Left: Material Dossier */}
         <div className="bg-[#0E0E12] border border-zinc-800/60 rounded-xl p-5 space-y-4 font-sans text-xs">
           <div className="flex items-center justify-between pb-3 border-b border-zinc-800/70">
-            <span className="font-semibold text-zinc-200 text-xs uppercase tracking-wider flex items-center gap-1.5">
-              <ShieldAlert className="w-3.5 h-3.5 text-[#F97316]" />
+            <span className="font-semibold text-zinc-200 text-xs uppercase tracking-wider">
               Engineering Hazard Dossier: {selectedMaterial.name}
             </span>
             <span className="text-xs font-mono text-zinc-400">MOC: <span className="font-semibold text-zinc-200">{selectedMaterial.baseMoc}% O₂</span></span>
@@ -430,8 +418,7 @@ export const RiskMatrix: React.FC = () => {
         {/* Right: Fine Water Mist vs CO2 Benchmark */}
         <div className="bg-[#0E0E12] border border-zinc-800/60 rounded-xl p-5 space-y-4 font-sans text-xs">
           <div className="flex items-center justify-between pb-3 border-b border-zinc-800/70">
-            <span className="font-semibold text-zinc-200 text-xs uppercase tracking-wider flex items-center gap-1.5">
-              <Droplets className="w-3.5 h-3.5 text-[#3B82F6]" />
+            <span className="font-semibold text-zinc-200 text-xs uppercase tracking-wider">
               Suppression Benchmark: Water Mist vs. CO₂
             </span>
             <span className="text-[10px] text-emerald-400 font-semibold bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20 font-sans">

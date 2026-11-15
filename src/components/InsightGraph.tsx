@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
-import { 
-  Network, 
-  TrendingUp, 
-  Zap, 
+import {
+  Network,
+  TrendingUp,
+  Zap,
   Layers
 } from 'lucide-react';
-import { 
-  ScatterChart, 
-  Scatter, 
-  XAxis, 
-  YAxis, 
-  ZAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  ResponsiveContainer, 
-  ComposedChart, 
-  Line, 
-  Area, 
-  ReferenceArea, 
-  Legend 
+import {
+  ScatterChart,
+  Scatter,
+  XAxis,
+  YAxis,
+  ZAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  ComposedChart,
+  Line,
+  Area,
+  ReferenceArea,
+  Legend
 } from 'recharts';
 import { nasaExperiments } from '../data/nasaExperiments';
 import { NASAExperiment } from '../types';
@@ -28,9 +28,9 @@ interface InsightGraphProps {
   onOpenExperimentModal?: (exp: NASAExperiment) => void;
 }
 
-export const InsightGraph: React.FC<InsightGraphProps> = ({ 
+export const InsightGraph: React.FC<InsightGraphProps> = ({
   onSelectExperiment,
-  onOpenExperimentModal 
+  onOpenExperimentModal
 }) => {
   const handleInspect = onSelectExperiment || onOpenExperimentModal;
   const [selectedRegimeFilter, setSelectedRegimeFilter] = useState<string>('ALL');
@@ -81,14 +81,9 @@ export const InsightGraph: React.FC<InsightGraphProps> = ({
       {/* Header Banner — de-boxed & breathing */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2">
         <div>
-          <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-lg bg-[#18181B] border border-zinc-800 flex items-center justify-center text-[#F97316]">
-              <Network className="w-4 h-4" />
-            </div>
-            <h2 className="text-base font-semibold font-sans text-zinc-100 tracking-tight">
-              Cross-Experiment Telemetry Correlation & Anomaly Graph
-            </h2>
-          </div>
+          <h2 className="text-base font-semibold font-sans text-zinc-100 tracking-tight">
+            Cross-Experiment Telemetry Correlation & Anomaly Graph
+          </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-2xl font-sans leading-relaxed">
             Multi-axis correlation across 17 verified NASA PSI flight experiments. Visualizes flame spread kinetics, ventilation thresholds, and non-buoyant combustion limits.
           </p>
@@ -217,7 +212,7 @@ export const InsightGraph: React.FC<InsightGraphProps> = ({
           <div className="border-b border-zinc-800/70 pb-3 flex items-center justify-between">
             <div className="space-y-0.5">
               <h3 className="text-xs font-sans font-semibold text-zinc-200 uppercase tracking-wider flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-emerald-400" />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                 Airflow Velocity vs. Combustion Sustainability
               </h3>
               <p className="text-xs text-zinc-400 font-sans">

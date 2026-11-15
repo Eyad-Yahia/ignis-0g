@@ -138,14 +138,9 @@ export const DatasetExplorer: React.FC<DatasetExplorerProps> = ({
       {/* Header Banner — de-boxed & breathing */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2">
         <div>
-          <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-lg bg-[#18181B] border border-zinc-800 flex items-center justify-center text-[#F97316]">
-              <Database className="w-4 h-4" />
-            </div>
-            <h2 className="text-base font-semibold font-sans text-zinc-100 tracking-tight">
-              NASA Physical Sciences Informatics (PSI) Curated Dataset
-            </h2>
-          </div>
+          <h2 className="text-base font-semibold font-sans text-zinc-100 tracking-tight">
+            NASA Physical Sciences Informatics (PSI) Curated Dataset
+          </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-2xl font-sans leading-relaxed">
             17 authentic, verified combustion flight and ground experiments curated from the NASA PSI repository across Saffire, FLEX, BASS, ACME, SoFIE, BRE, and SLICE.
           </p>
