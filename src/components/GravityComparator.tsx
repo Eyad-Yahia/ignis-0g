@@ -491,7 +491,7 @@ export const GravityComparator: React.FC = () => {
           }
         }
         ctx.font = '11px "JetBrains Mono", monospace'; ctx.fillStyle = '#7DD3FC';
-        ctx.fillText(`U = ${curFlow.toFixed(1)} cm/s →`, 16, 24);
+        ctx.fillText(`U = ${curFlow.toFixed(1)} cm/s →`, 16, 66);
       }
       ctx.restore();
 
