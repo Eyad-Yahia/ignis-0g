@@ -179,29 +179,14 @@ export const Header: React.FC<HeaderProps> = ({
     <>
       {/* 48px Header Bar — strict z-30 in hierarchy */}
       <header className="sticky top-0 z-30 h-12 bg-[#09090B]/95 backdrop-blur-md border-b border-zinc-800/70 px-4 sm:px-6 flex items-center justify-between select-none">
-        {/* Left: Branding & Dataset Status */}
-        <div className="flex items-center gap-3 min-w-0">
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-6 h-6 rounded-md bg-[#18181B] border border-zinc-800 flex items-center justify-center text-[#F97316]">
-              <Flame className="w-3.5 h-3.5" />
-            </div>
-            <span className="font-sans font-semibold text-sm tracking-tight text-zinc-100">
-              IGNIS-0G
-            </span>
+        {/* Left: Branding */}
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <div className="w-6 h-6 rounded-md bg-[#18181B] border border-zinc-800 flex items-center justify-center text-[#F97316]">
+            <Flame className="w-3.5 h-3.5" />
           </div>
-
-          <span className="text-zinc-700 hidden sm:inline">|</span>
-
-          <div className="hidden sm:flex items-center gap-2 font-sans text-xs text-zinc-400 truncate">
-            <span className="flex items-center gap-1.5 text-zinc-300">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
-              <span className="font-mono tabular-nums font-medium text-zinc-200">17</span> NASA PSI records
-            </span>
-            <span className="text-zinc-600 hidden md:inline">•</span>
-            <span className="text-zinc-400 text-xs hidden md:inline">
-              NASA-STD-6001B methodology
-            </span>
-          </div>
+          <span className="font-sans font-semibold text-sm tracking-tight text-zinc-100">
+            IGNIS-0G
+          </span>
         </div>
 
         {/* Center: Segmented Navigation Tabs */}
